@@ -6,9 +6,15 @@
 
 `1º semestre/2026`
 
-O problema central está na demora do atendimento na lanchonete da PUC, onde o intervalo de apenas 10 minutos é insuficiente para absorver a demanda, gerando uma dor clara nos alunos que perdem seu tempo de descanso e chegam atrasados às aulas. Esse gargalo acontece porque todas as turmas saem juntas, enquanto alguns alunos saem mais cedo e já lotam a lanchonete, quem sai no horário certo ou pouco depois acaba desistindo da fila, já que o pouco tempo que resta precisa ser usado para se locomover até a próxima sala. A situação piora porque o estudante só começa a escolher o lanche e a pagar quando chega ao balcão, o que trava o fluxo de quem está atrás.
+## 🔴 O Problema
+O problema central está na demora do atendimento na lanchonete da PUC, onde o intervalo de apenas 10 minutos é insuficiente para absorver a demanda, gerando uma dor clara nos alunos que perdem seu tempo de descanso e chegam atrasados às aulas. 
 
-A solução proposta consiste no desenvolvimento de uma plataforma digital (site ou aplicativo) que permita realizar o pedido e o pagamento de forma antecipada, para que o aluno só precise passar na lanchonete para retirar o produto rapidamente. Esse modelo de autoatendimento resolve o problema da indecisão e das filas, apresentando um alto potencial de escalabilidade para ser replicado em outras instituições de ensino que enfrentam esse mesmo sufoco nos horários de pico.
+Esse gargalo acontece porque todas as turmas saem juntas, enquanto alguns alunos saem mais cedo e já lotam a lanchonete, quem sai no horário certo ou pouco depois acaba desistindo da fila, já que o pouco tempo que resta precisa ser usado para se locomover até a próxima sala. A situação piora porque o estudante só começa a escolher o lanche e a pagar quando chega ao balcão, o que trava o fluxo de quem está atrás.
+
+## 🟢 A Solução
+A solução proposta consiste no desenvolvimento de uma plataforma digital (site ou aplicativo) que permita realizar o pedido e o pagamento de forma antecipada, para que o aluno só precise passar na lanchonete para retirar o produto rapidamente. 
+
+Esse modelo de autoatendimento resolve o problema da indecisão e das filas, apresentando um alto potencial de escalabilidade para ser replicado em outras instituições de ensino que enfrentam esse mesmo sufoco nos horários de pico.
 
 ## Integrantes
 
