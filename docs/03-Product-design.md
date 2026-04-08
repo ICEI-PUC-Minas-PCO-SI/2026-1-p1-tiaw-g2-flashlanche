@@ -2,32 +2,24 @@
 
 <span style="color:red">Pré-requisitos: <a href="02-Product-discovery.md"> Product discovery</a></span>
 
-
-> ⚠️ **APAGUE ESTA PARTE ANTES DE ENTREGAR SEU TRABALHO**
-
-Neste momento, transformam-se os insights e validações obtidos em soluções tangíveis e utilizáveis. Esta fase envolve a definição de uma proposta de valor, detalhando a prioridade de cada ideia, e a consequente criação de wireframes, mockups e protótipos de alta fidelidade, que especificam a interface e a experiência do usuário.
-
-
 ## Histórias de usuários
 
 Com base na análise das personas, foram identificadas as seguintes histórias de usuários:
 
-|EU COMO... `PERSONA`| QUERO/PRECISO ... `FUNCIONALIDADE` |PARA ... `MOTIVO/VALOR`                 |
-|--------------------|------------------------------------|----------------------------------------|
-|Usuário do sistema  | Registrar minhas tarefas  ⚠️ EXEMPLO ⚠️         | Não esquecer de fazê-las               |
-|Administrador       | Alterar permissões        ⚠️ EXEMPLO ⚠️         | Permitir que possam administrar contas |
-
-> ⚠️ **APAGUE ESTA PARTE ANTES DE ENTREGAR SEU TRABALHO**
-
-Apresente aqui as histórias de usuários que são relevantes para o projeto da sua solução. As histórias de usuários consistem em uma ferramenta poderosa para a compreensão e elicitação dos requisitos funcionais e não funcionais da sua aplicação. Se possível, agrupe as histórias de usuários por contexto, para facilitar consultas recorrentes a esta parte do documento.
-
-> **Links úteis**:
-> - [Histórias de usuários com exemplos e template](https://www.atlassian.com/br/agile/project-management/user-stories)
-> - [Como escrever boas histórias de usuário (user stories)](https://medium.com/vertice/como-escrever-boas-users-stories-hist%C3%B3rias-de-usu%C3%A1rios-b29c75043fac)
-> - [User stories: requisitos que humanos entendem](https://www.luiztools.com.br/post/user-stories-descricao-de-requisitos-que-humanos-entendem/)
-> - [Histórias de usuários: mais exemplos](https://www.reqview.com/doc/user-stories-example.html)
-> - [9 common user story mistakes](https://airfocus.com/blog/user-story-mistakes/)
-
+| EU COMO... `PERSONA` | QUERO/PRECISO ... `FUNCIONALIDADE` | PARA ... `MOTIVO/VALOR` |
+| :--- | :--- | :--- |
+| **João Vítor** | Realizar pedidos pelo celular | Evitar filas e ganhar tempo no intervalo. |
+| **João Vítor** | Retirar meu lanche rapidamente | Comer com tranquilidade antes da próxima aula. |
+| **João Vítor** | Acompanhar o status do pedido | Saber quando o lanche estará pronto para busca. |
+| **João Vítor** | Um sistema organizado de retirada | Aproveitar melhor meu tempo de descanso no campus. |
+| **Maria Eduarda** | Organizar meu tempo no Campus | Evitar estresses com horários e filas extensas. |
+| **Maria Eduarda** | Saber que horas meu pedido ficará pronto | Ter mais tranquilidade na rotina acadêmica. |
+| **Maria Eduarda** | Evitar aglomerações na lanchonete | Reduzir a ansiedade e ter mais conforto no intervalo. |
+| **Maria Eduarda** | Uma interface simples e intuitiva | Fazer pedidos sem dificuldade ou estresse cognitivo. |
+| **Carlos Henrique** | Reduzir filas nos horários de pico | Melhorar a experiência dos clientes na lanchonete. |
+| **Carlos Henrique** | Controlar os pedidos em tempo real | Garantir uma operação mais eficiente e ágil. |
+| **Carlos Henrique** | Aumentar o número de vendas | Melhorar o faturamento e a rentabilidade do negócio. |
+| **Carlos Henrique** | Ter acesso a relatórios de desempenho | Tomar decisões gerenciais mais assertivas. |
 
 ## Proposta de valor
 
