@@ -25,13 +25,13 @@ Entrega rápida: Implementar um fluxo de "clicar e retirar" imediato, permitindo
 
 A motivação para este projeto baseia-se na urgência de eliminar o conflito logístico entre o tempo de intervalo e a alta demanda simultânea no campus. A aplicação justifica-se pelos seguintes pontos, validados em pesquisa de campo e entrevistas qualitativas:
 
-Otimização do Tempo de Descanso: Dados coletados mostram que o deslocamento entre blocos consome a maior parte do intervalo, deixando os alunos com um déficit de tempo para alimentação. O software justifica-se ao reduzir a interação no balcão para menos de 30 segundos.
+Otimização do Tempo de Descanso: Dados coletados mostram que o deslocamento entre prédios consome a maior parte do intervalo, deixando os alunos com pouco tempo para alimentação. O software justifica-se ao reduzir a interação no balcão para menos de 30 segundos.
 
-Eliminação da Indecisão no Caixa: A pesquisa identificou que o principal causador de filas é a indecisão dos clientes no momento da compra presencial. A escolha dos objetivos específicos focados no pagamento antecipado visa remover esse obstáculo humano da linha de frente.
+Eliminação da Indecisão no Caixa: A pesquisa identificou que o principal causador de filas é a indecisão dos alunos no momento da compra presencial. Ao focar na escolha e pagamento antecipado, eliminamos a espera desnecessária no balcão e garantimos que o fluxo de atendimento não fique travado
 
-Saúde e Bem-Estar Acadêmico: Justifica-se o aprofundamento nesta solução pelo impacto direto no foco dos estudantes; ao reduzir a ansiedade gerada pela pressa e pelas aglomerações, o sistema contribui para um retorno mais tranquilo e produtivo às aulas seguintes.
+Saúde e Bem-Estar Acadêmico: O projeto se justifica pelo impacto positivo no bem-estar dos alunos. Ao eliminar o estresse causado pelas filas e pela correria do intervalo, o sistema permite que o estudante retorne para a sala de aula com mais foco e tranquilidade, favorecendo o aprendizado.
 
-Eficiência do Negócio: A aplicação responde à necessidade da gestão de reduzir a taxa de desistência de compra, recuperando o faturamento que hoje é perdido devido à percepção visual de filas intransponíveis por parte dos alunos.
+Eficiência do Negócio: A aplicação atende à necessidade da gestão de reduzir a desistência de compra. Ao eliminar o impacto visual das filas, a lanchonete consegue recuperar o faturamento que hoje é perdido porque os alunos desistem de esperar ao verem o balcão lotado.
 
 ## Público-alvo
 
