@@ -62,6 +62,9 @@ O link e o usuário/senha descritos acima são apenas exemplos de como tais info
 
 * <a href="presentation/README.md">Apresentação do projeto</a>
 
+# Protótipo no Figma
+[Abrir no Figma](https://www.figma.com/design/eWkzD1V8LKrg2dL2TZO7Rx/Projeto-Lanchonete?node-id=0-1&t=LVnf01HGcuFVYers-1)
+
 ## Dicas 
 
 > **IMPORTANTE: APAGUE ESTA SEÇÃO DE DICAS ANTES DE ENTREGAR SEU TRABALHO**
