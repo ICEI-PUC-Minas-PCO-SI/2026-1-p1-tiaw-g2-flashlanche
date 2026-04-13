@@ -5,7 +5,7 @@
 
 ## Slides
 
-[PDF Apresentação](2026-1-p1-tiaw-g2-flashlanche\docs\files\FlashLanche.pdf)
+[PDF Apresentação](FlashLanche.pdf)
 
 
 ## Vídeo
