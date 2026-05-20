@@ -1,0 +1,53 @@
+.shop-container { padding: 40px 0; }
+.shop-header { margin-bottom: 40px; text-align: center; }
+.shop-title { font-size: 36px; font-weight: 700; color: var(--text-primary); }
+.product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+.product-card {
+    background: var(--white);
+    border-radius: 18px;
+    padding: 16px;
+    border: 1px solid var(--border-gray);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+.product-card:hover {
+    box-shadow: var(--shadow-low), var(--shadow-mid);
+    transform: translateY(-4px);
+}
+.product-image {
+    width: 100%;
+    min-height: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+.product-image-img {
+    width: 88px;
+    height: 88px;
+    object-fit: cover;
+    border-radius: 16px;
+    display: block;
+}
+.product-image-text {
+    font-size: 48px;
+    line-height: 1;
+    text-align: center;
+}
+.product-name { font-weight: 600; font-size: 14px; margin-bottom: 6px; }
+.product-price { color: var(--orange); font-weight: 700; font-size: 16px; margin-bottom: 10px; }
+.product-desc { font-size: 12px; color: var(--text-secondary); margin-bottom: 12px; }
+.btn-add-cart { width: 100%; padding: 10px; border-radius: 12px; background: var(--orange); color: white; border: none; font-weight: 600; cursor: pointer; transition: all 0.18s; }
+.btn-add-cart:hover { background: var(--orange-deep); }
+.btn-add-cart:active { transform: scale(0.97); }
+.cart-badge { position: fixed; bottom: 30px; right: 30px; width: 64px; height: 64px; border-radius: 50%; background: var(--orange); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 20px; cursor: pointer; z-index: 100; box-shadow: 0 4px 12px rgba(255,107,44,0.28); transition: all 0.2s; }
+.cart-badge:hover { transform: scale(1.08); }
+.cart-badge i { margin-right: 4px; }
+.top-nav { background: var(--white); padding: 16px 0; border-bottom: 1px solid var(--border-gray); margin-bottom: 30px; }
+.nav-container { display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--text-primary); font-weight: 700; }
+.nav-logo-mark { width: 36px; height: 36px; background: var(--orange); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; }
+.nav-actions { display: flex; gap: 12px; }
+.nav-btn { padding: 8px 16px; border-radius: 12px; border: 1px solid var(--border-gray); background: transparent; cursor: pointer; transition: all 0.2s; }
+.nav-btn:hover { background: var(--canvas); }
+.nav-btn.login-btn { background: var(--orange); color: white; border-color: var(--orange); }

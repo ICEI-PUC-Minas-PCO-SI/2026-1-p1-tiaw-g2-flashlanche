@@ -1,78 +1,239 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="./assets/css/style.css" />
-    <script src="./assets/js/login.js"></script>
-  </head>
-  <body>
-    <header>
-      <div class="banner">
-        <img src="./assets/images/banner_ti.png" alt="" />
-      </div>
-      <div class="barra-info">
-        <nav class="menu">
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">Sobre nós</a></li>
-          </ul>
-        </nav>
-        <div class="dados-usuario">
-          <span id="userInfo"></span>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlashLanche - Peça antes, retire na hora</title>
+    <link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+
+<!-- ═════════════════════════════════════════════════════HEADER════════════════════════════════════════════════════════════ -->
+    <header id="header">
+    <div class="container">
+        <div class="header-inner">
+        <a href="#" class="logo">
+            <div class="logo-mark">
+                <i class="bi bi-bag-heart-fill"></i>
+            </div>
+            <span class="logo-name">Flash<span>Lanche</span></span>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="#beneficios">Benefícios</a></li>
+            <li><a href="">Como funciona</a></li>
+            <li><a href="">Gerenciamento</a></li>
+        </ul>
+
+        <div class="header-actions">
+            <a href="modulos/cliente/cardapio/shop.html" class="btn-outline-cb header-login" style="padding:10px 18px;font-size:13px;">Entrar</a>
+            <a href="modulos/cliente/cardapio/shop.html" class="btn-primary-cb" style="padding:10px 18px;font-size:13px;">
+            <i class="bi bi-arrow-right-circle-fill"></i> Começar
+            </a>
+        </div>
+        </div>
+    </div>
+    </header>
+
+<!-- ═════════════════════════════════════════════════════HERO════════════════════════════════════════════════════════════ -->
+    <section id="hero">
+
+    <div class="container">
+        <div class="row">
+        <div class="col-lg-6 col-md-7" style="padding-bottom:80px;">
+
+            <div class="hero-tag">
+            <div class="hero-tag-dot"></div>
+            <span class="body-sm text-orange" style="font-weight:700;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;">Sistema inativo na universidade</span>
+            </div>
+
+            <h1 class="display-text hero-headline">
+            Peça antes.<br>
+            <span class="accent">Retire na hora.</span><br>
+            Sem fila.
+            </h1>
+
+            <p class="body-lg hero-sub">
+            O FlashLanche permite que você agende seus pedidos na lanchonete antes do intervalo e retire no horário exato, com um simples QR Code.
+            </p>
+
+            <div class="hero-actions">
+            <a href="modulos/cliente/cardapio/shop.html" class="btn-primary-cb">
+                <i class="bi bi-bag-check-fill"></i>
+                Fazer meu pedido
+            </a>
+            <a href="#como-funciona" class="btn-outline-cb">
+                <i class="bi bi-play-circle"></i>
+                Ver como funciona
+            </a>
+            </div>
+
+            <div class="hero-stats">
+            <div class="hero-stat-item">
+                <div class="hero-stat-num">–<span>80%</span></div>
+                <div class="hero-stat-label">Redução no tempo de espera</div>
+            </div>
+            <div class="hero-stat-item">
+                <div class="hero-stat-num"><span>2</span>min</div>
+                <div class="hero-stat-label">Para fazer um pedido</div>
+            </div>
+            <div class="hero-stat-item">
+                <div class="hero-stat-num"><span>QR</span></div>
+                <div class="hero-stat-label">Retirada instantânea</div>
+            </div>
+            </div>
+        </div>
+        </div>
+        </div>
+    </div>
+    </section>
+
+<!-- ═════════════════════════════════════════════════════BENEFÍCIOS═══════════════════════════════════════════════════════════ -->
+ <section id="beneficios" class="section-pad">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-eyebrow">Por que usar</span>
+      <h2 class="h1-text">Tudo que você precisa<br>no intervalo certo</h2>
+      <p class="body-md text-muted-cb mt-3" style="max-width:480px;margin:0 auto;">
+        O FlashLanche foi desenhado para o ritmo universitário — rápido, preciso e sem stress.
+      </p>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-md-6 col-lg-3">
+        <div class="benefit-card">
+          <div class="benefit-icon orange"><i class="bi bi-clock-history"></i></div>
+          <div class="benefit-title">Zero espera no caixa</div>
+          <div class="benefit-desc">Seu pedido fica pronto antes de você chegar. Só mostrar o QR e pegar.</div>
         </div>
       </div>
-    </header>
-    <main>
-        <h3>Boas vindas</h3>
-        <p>Sejam bem-vindos à home-page do projeto de TI 1 - Trabalho
-        Interdisciplinar</p>
-        <p>Esse conteúdo que você está lendo foi criado para exemplificar como
-        criar o seu site integrado com o ambiente de login e o back end que
-        utiliza o JSON Server.</p>
-        <p>Ao criar o seu site, você deve adaptar esse código para sua neessidade ou começar do zero, excluindo todo esse conteúdo.
+
+      <div class="col-md-6 col-lg-3">
+        <div class="benefit-card">
+          <div class="benefit-icon green"><i class="bi bi-calendar-check"></i></div>
+          <div class="benefit-title">Agendamento preciso</div>
+          <div class="benefit-desc">Escolha o horário de retirada ideal para o seu intervalo — a lanchonete se organiza por você.</div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <div class="benefit-card">
+          <div class="benefit-icon blue"><i class="bi bi-qr-code-scan"></i></div>
+          <div class="benefit-title">Retirada por QR Code</div>
+          <div class="benefit-desc">Cada pedido gera um código único. Validação instantânea, sem papel, sem confusão.</div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-3">
+        <div class="benefit-card">
+          <div class="benefit-icon yellow"><i class="bi bi-graph-up-arrow"></i></div>
+          <div class="benefit-title">Métricas para a lanchonete</div>
+          <div class="benefit-desc">Gestores acompanham pedidos em tempo real, com dados de pico, produtos e receita.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════════════════════CTA═══════════════════════════════════════════════════════════ -->
+<section id="cta-final" class="section-pad">
+  <div class="cta-bg-blob" style="width:500px;height:500px;top:-200px;left:-150px;"></div>
+  <div class="cta-bg-blob" style="width:400px;height:400px;bottom:-150px;right:-100px;"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="row align-items-center">
+      <div class="col-lg-7">
+        <span style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.65);display:block;margin-bottom:16px;">Comece agora</span>
+        <h2 class="hero-text cta-title">Chega de fila.<br>Seu intervalo merece mais.</h2>
+        <p class="body-lg cta-sub">
+          Faça seu pedido, agende a retirada e use seu intervalo do jeito que quiser — sem stress, sem espera.
         </p>
 
-        <h3>Arquivos do site (Front End)</h3>
-        <p>Para montar seu site, edite os arquivos existentes e crie novos arquivos na pasta <code>public</code> que mantem todos os arquivos da parte de Front End do site, a interface que é vista pelo usuário no navegador.</p>
+        <div class="cta-actions">
+          <a href="modulos/cliente/cardapio/shop.html" class="btn-ghost-white">
+            <i class="bi bi-bag-check-fill"></i>
+            Fazer meu primeiro pedido
+          </a>
+          <a href="modulos/gerente/dashboard/dashboard.html" style="display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,0.72);font-size:14px;font-weight:600;text-decoration:none;padding:14px 0;">
+            Sou gestor de lanchonete <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
 
-        <p>Nesta pasta <code>public</code>, sugerimos que você organize os arquivos do seu site da seguinte maneira:</p>
-        <ul>
-            <li><strong>Pasta <code>assets</code></strong>: os arquivos de formatação (CSS), os scripts (JS), as imagens utilizadas no site (JPG, PNG, GIF, SVG, etc), fontes (TTF) e outros arquivos gerais utilizados por todo o site.</li>
-            <li><strong>Pasta <code>modulos</code></strong>: os arquivos utilizados na implementação das funcionalidades do site. Separe uma sub-pasta para cada novo módulo ou funcionalidade. Pode também ser utilizado para dividir o trabalho de cada membro do grupo.</li>
-            <li><strong>Arquivo <code>index.html</code></strong>: arquivo que representa a "home page" do site.</li>
+        <div class="cta-feature-list">
+          <div class="cta-feat"><i class="bi bi-check2"></i><span>Sem custo de cadastro</span></div>
+          <div class="cta-feat"><i class="bi bi-check2"></i><span>Funciona no celular</span></div>
+          <div class="cta-feat"><i class="bi bi-check2"></i><span>Retirada com QR Code</span></div>
+          <div class="cta-feat"><i class="bi bi-check2"></i><span>Dashboard completo</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════════════════════FOOTER═══════════════════════════════════════════════════════════ -->
+<footer id="footer" class="section-pad-sm">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6">
+        <a href="#" class="footer-logo footer-brand" style="display:inline-flex;">
+          <div class="footer-logo-mark"><i class="bi bi-bag-heart-fill"></i></div>
+          <span class="footer-logo-name" style="margin-left:10px;">FlashLanche</span>
+        </a>
+        <p class="footer-tagline">
+          Sistema de pedidos e agendamento para lanchonetes universitárias. Menos fila, mais intervalo.
+        </p>
+      </div>
+
+      <div class="col-lg-2 col-md-6 offset-lg-2">
+        <div class="footer-col-title">Produto</div>
+        <ul class="footer-links">
+          <li><a href="modulos/cliente/cardapio/shop.html">Cardápio</a></li>
+          <li><a href="modulos/cliente/pedidos/orders.html">Meus pedidos</a></li>
+          <li><a href="modulos/cliente/rastreio/tracking.html">QR Code</a></li>
         </ul>
+      </div>
 
-        <h3>Módulo de Login</h3>
-        <p>O módulo de login de usuário traz uma funcionalidade completa de registro de usuários e validação de login e senha.</p>
-        <h4>Integração do site com módulo de Login</h4>
-        <p>Para utilizar o módulo de login, basta incluir o script na sua página colocando a seguinte tag no HEAD</p>
-        <pre>&lt;script src="./assets/js/login.js"&gt&lt;script&gt;</pre>
-        <p>Ao incluir o script de login na sua página, caso o usuário ainda não tenha efetuado login, ao acessar a home-page do site, o navegador será direcionado para o formulário de <strong>Identificação de Usuário</strong>. Se o usuário informar corretamente o login e a senha, o navegador será direcionado para a Home-Page.</p>
-        <h4>Sessão do usuário logado</h4>
-        <p>Assim que o usuário se identifica e acessa a parte privada do site, o módulo de login cria uma chave do sessionStorage do navegador com o título <strong>usuarioCorrente</strong> e cujo conteúdo é um objeto com os atributos: id, nome, login, senha e email. </p>
-        <h4>Base de dados de usuários</h4>
-        <p>Inicialmente o módulo de login é configurado com dois usuários: </p>
-        <ul>
-            <li>admin - Senha: 123</li>
-            <li>user - Senha: 123</li>
+      <div class="col-lg-2 col-md-6">
+        <div class="footer-col-title">Gestão</div>
+        <ul class="footer-links">
+          <li><a href="modulos/gerente/dashboard/dashboard.html">Painel do gestor</a></li>
+          <li><a href="modulos/gerente/pedidos/orders.html">Pedidos em tempo real</a></li>
+          <li><a href="modulos/gerente/dashboard/dashboard.html">Métricas</a></li>
+          <li><a href="modulos/gerente/produtos/products.html">Gerenciar cardápio</a></li>
         </ul>
+      </div>
 
-        <h3>Servidor Web e API baseada no JSON Server (Back end)</h3>
-        <p>O ambiente de trabalho disponibilizado para suportar o Trabalho Interdisciplinar 1 é baseado no Node.js. A aplicação de back end utiliza o módulo JSON Server para criar um Servidor Web que prove duas estruturas separadas:
-        <ul>
-            <li><strong>Arquivos estáticos (Pasta <code>public</code>)</strong>: da acesso aos arquivos utilizados no front end (HTML, CSS e JavaScript).</li>
-            <li><strong>API RESTful (pasta <code>db</code>)</strong>: uma interface para acesso aos dados definidos no arquivo db.json.</li>
-        </ul></p>
+      <div class="col-lg-2 col-md-6">
+        <div class="footer-col-title">Projeto</div>
+        <ul class="footer-links">
+          <li><a href="#">Sobre</a></li>
+          <li><a href="#">Como funciona</a></li>
+          <li><a href="#">Contato</a></li>
+        </ul>
+      </div>
+    </div>
 
-        <h4>Arquitetura do site</h4>
-        <p>A imagem que se segue apresenta a arquitetura desse ambiente, mostrando as duas refletindo as pastas desse ambiente.</p>
-        <p><img class="img-fluid d-block w-75 m-auto" src="./assets/images/servidor.png" alt=""></p>
+    <hr class="footer-divider" />
 
-        <h4>Arquivo db.json</h4>
-        <p>O arquivo JSON utilizado para definição das estruturas dos dados providos pela aplicação é localizado na pasta db e tem um formato como o mostrado no exemplo da figura a seguir. Esse arquivo define uma estrutura hipotética de contatos que descreve itens com os seguintes atributos: <code>id</code>, <code>nome</code> e <code>cidade</code>. para o JSON Server, é fundamental que toda estrutura tenha um atributo de identificador de nome <code>id</code>.</p>
-        <p><img class="img-fluid d-block w-50 m-auto" src="./assets/images/arquivo_json.png" alt=""></p>
-    </main>
-  </body>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 FlashLanche. Projeto acadêmico.</span>
+      <div class="footer-legal">
+        <a href="#">Privacidade</a>
+        <a href="#">Termos de uso</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
