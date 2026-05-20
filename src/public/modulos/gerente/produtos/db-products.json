@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "nome": "Pão de Queijo",
+    "categoria": "lanches",
+    "descricao": "Pão de queijo quentinho",
+    "preco": 6.50,
+    "imagem": "🧀"
+  },
+  {
+    "id": "2",
+    "nome": "Macarrão",
+    "categoria": "refeições",
+    "descricao": "Macarrão ao molho vermelho",
+    "preco": 23.50,
+    "imagem": "🍝"
+  },
+  {
+    "id": "3",
+    "nome": "Coca-Cola",
+    "categoria": "bebidas",
+    "descricao": "Coca-Cola lata 350ml",
+    "preco": 6.00,
+    "imagem": "🥤"
+  }
+]
