@@ -24,7 +24,7 @@
     <div class="nav-container">
       <a href="../../../index.html" class="nav-logo">
         <div class="nav-logo-mark"><i class="bi bi-bag-heart-fill"></i></div>
-        FlashLanche
+        <span class="logo-name">Flash<span>Lanche</span></span>
       </a>
       <div class="nav-actions">
         <button class="nav-btn" onclick="irParaPedidos()"><i class="bi bi-clock-history"></i> Meus Pedidos</button>
@@ -44,11 +44,27 @@
 
     <!-- ═════════════════════════════════════════════════════FILTRO════════════════════════════════════════════════════════════ -->
     <div style="margin-bottom: 30px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-      <button class="btn-filter" onclick="filtrarCategoria('todos')" style="padding: 8px 16px; border-radius: 20px; background: var(--orange); color: white; border: none; cursor: pointer; font-weight: 600;">Todos</button>
-      <button class="btn-filter" onclick="filtrarCategoria('lanches')" style="padding: 8px 16px; border-radius: 20px; background: var(--canvas); border: 1px solid var(--border-gray); cursor: pointer; font-weight: 600;">Lanches</button>
-      <button class="btn-filter" onclick="filtrarCategoria('refeições')" style="padding: 8px 16px; border-radius: 20px; background: var(--canvas); border: 1px solid var(--border-gray); cursor: pointer; font-weight: 600;">Refeições</button>
-      <button class="btn-filter" onclick="filtrarCategoria('bebidas')" style="padding: 8px 16px; border-radius: 20px; background: var(--canvas); border: 1px solid var(--border-gray); cursor: pointer; font-weight: 600;">Bebidas</button>
-      <button class="btn-filter" onclick="filtrarCategoria('doces')" style="padding: 8px 16px; border-radius: 20px; background: var(--canvas); border: 1px solid var(--border-gray); cursor: pointer; font-weight: 600;">Doces</button>
+      <button class="btn-filter" onclick="filtrarCategoria('todos')">Todos</button>
+      <button class="btn-filter" onclick="filtrarCategoria('lanches')" >Lanches</button>
+      <button class="btn-filter" onclick="filtrarCategoria('refeições')">Refeições</button>
+      <button class="btn-filter" onclick="filtrarCategoria('bebidas')">Bebidas</button>
+      <button class="btn-filter" onclick="filtrarCategoria('doces')">Doces</button>
+    </div>
+
+    <!-- ═════════════════════════════════════════════════════ORDENAÇÃO════════════════════════════════════════════════════════════ -->
+
+    <div class="sort-container">
+      <select id="sort-select" onchange="ordenarProdutos()">
+        <option value="padrao">
+          Ordenar por
+        </option>
+        <option value="menor-preco">
+          Menor preço
+        </option>
+        <option value="maior-preco">
+          Maior preço
+        </option>
+      </select>
     </div>
 
     <!-- ═════════════════════════════════════════════════════GRID PRODUTOS════════════════════════════════════════════════════════════ -->

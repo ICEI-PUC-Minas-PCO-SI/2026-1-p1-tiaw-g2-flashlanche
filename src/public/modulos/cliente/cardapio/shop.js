@@ -1,3 +1,82 @@
+/*═════════════════════════════════════════════════════MOCK DE PRODUTOS═══════════════════════════════════════════════════════*/
+
+function inicializarProdutosMockados() {
+
+  const produtosExistentes = localStorage.getItem('produtos');
+
+  /*═════════════════════════════════════════════════════SE JA EXISTEM PRODUTOS═══════════════════════════════════════════════════════*/
+
+  if (produtosExistentes) {
+    return;
+  }
+
+  /*═════════════════════════════════════════════════════MOCK═══════════════════════════════════════════════════════*/
+
+  const produtosMockados = [
+
+    {
+      id: '1',
+      nome: 'X-Burguer',
+      categoria: 'lanches',
+      descricao: 'Hambúrguer artesanal.',
+      preco: 24.90,
+      imagem: '🍔'
+    },
+
+    {
+      id: '2',
+      nome: 'Batata Frita',
+      categoria: 'lanches',
+      descricao: 'Porção com cheddar e bacon.',
+      preco: 18.50,
+      imagem: '🍟'
+    },
+
+    {
+      id: '3',
+      nome: 'Coca-Cola',
+      categoria: 'bebidas',
+      descricao: 'Lata 350ml.',
+      preco: 6.00,
+      imagem: '🥤'
+    },
+
+    {
+      id: '4',
+      nome: 'Milkshake',
+      categoria: 'doces',
+      descricao: 'Milkshake de chocolate.',
+      preco: 16.90,
+      imagem: '🍫'
+    },
+
+    {
+      id: '5',
+      nome: 'Macarrão',
+      categoria: 'refeições',
+      descricao: 'Macarrão ao molho vermelho.',
+      preco: 27.90,
+      imagem: '🍝'
+    },
+
+    {
+      id: '6',
+      nome: 'Brownie',
+      categoria: 'doces',
+      descricao: 'Brownie artesanal.',
+      preco: 12.90,
+      imagem: '🍪'
+    }
+  ];
+
+  /*═════════════════════════════════════════════════════SALVA MOCK═══════════════════════════════════════════*/
+
+  localStorage.setItem(
+    'produtos',
+    JSON.stringify(produtosMockados)
+  );
+}
+
 function irParaCarrinho() {
   window.location.href = '../../cliente/carrinho/cart.html';
 }
@@ -18,9 +97,14 @@ function obterProdutos() {
   return dados ? JSON.parse(dados) : [];
 }
 
+
 /*═════════════════════════════════════════════════════FILTRO ATUAL═════════════════════════════════════════*/
 
 let categoriaAtual = 'todos';
+
+/*═════════════════════════════════════════════════════ORDENACAO ATUAL═════════════════════════════════════════*/
+
+let ordenacaoAtual = 'padrao';
 
 /*═════════════════════════════════════════════════════FILTRAR PRODUTOS═════════════════════════════════════════*/
 
@@ -29,6 +113,17 @@ function filtrarCategoria(categoria) {
   categoriaAtual = categoria;
 
   atualizarBotoesFiltro();
+
+  renderizarProdutos();
+}
+
+/*═════════════════════════════════════════════════════ORDENAR PRODUTOS═════════════════════════════════════════*/
+
+function ordenarProdutos() {
+
+  const select = document.getElementById('sort-select');
+
+  ordenacaoAtual = select.value;
 
   renderizarProdutos();
 }
@@ -79,6 +174,20 @@ function renderizarProdutos() {
     });
   }
 
+  /*═════════════════════════════════════════════════════ORDENACAO═════════════════════════════════════════*/
+
+  if (ordenacaoAtual === 'menor-preco') {
+    produtos.sort(function(a, b) {
+      return a.preco - b.preco;
+    });
+  }
+
+  else if (ordenacaoAtual === 'maior-preco') {
+    produtos.sort(function(a, b) {
+      return b.preco - a.preco;
+    });
+  }
+
   /*═════════════════════════════════════════════════════LIMPA GRID═════════════════════════════════════════*/
 
   grid.innerHTML = '';
@@ -111,10 +220,7 @@ function renderizarProdutos() {
 
     /*═════════════════════════════════════════════════════IMAGEM URL═════════════════════════════════════════*/
 
-    if (
-      produto.imagem &&
-      produto.imagem.startsWith('http')
-    ) {
+    if (produto.imagem && produto.imagem.startsWith('http')) {
 
       imagemHtml = `
         <img
@@ -166,7 +272,7 @@ function renderizarProdutos() {
             R$ ${produto.preco.toFixed(2)}
           </span>
 
-          <button class="btn-add-cart">
+          <button class="btn-add-cart" onclick="adicionarAoCarrinho('${produto.id}')">
             <i class="bi bi-cart-plus"></i>
             Adicionar
           </button>
@@ -183,7 +289,10 @@ function renderizarProdutos() {
 
 window.onload = function() {
 
+  inicializarProdutosMockados();
+
   renderizarProdutos();
 
   atualizarBotoesFiltro();
+
 };
