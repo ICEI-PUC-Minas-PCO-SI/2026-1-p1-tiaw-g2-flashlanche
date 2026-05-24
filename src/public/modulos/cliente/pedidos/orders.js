@@ -2,6 +2,7 @@ function voltarParaShop() {
   window.location.href = '../cardapio/shop.html';
 }
 
+<<<<<<< HEAD
 document.addEventListener('DOMContentLoaded', () => {
     const inputTelefone = document.getElementById('telefone');
     const inputEmail = document.getElementById('email');
@@ -48,3 +49,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+=======
+>>>>>>> origin/main

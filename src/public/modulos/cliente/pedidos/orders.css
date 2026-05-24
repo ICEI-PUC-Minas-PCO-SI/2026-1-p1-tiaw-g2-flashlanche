@@ -3,7 +3,11 @@
 .orders-empty { text-align: center; padding: 60px 20px; }
 .orders-empty-icon { font-size: 64px; margin-bottom: 20px; }
 .orders-grid { display: grid; gap: 20px; }
+<<<<<<< HEAD
 .order-card { background: var(--white); border-radius: 18px; padding: 24px; border: 1px solid var(--border-gray); transition: all 0.2s; margin-bottom: 20px;}
+=======
+.order-card { background: var(--white); border-radius: 18px; padding: 24px; border: 1px solid var(--border-gray); transition: all 0.2s; }
+>>>>>>> origin/main
 .order-card:hover { box-shadow: var(--shadow-low), var(--shadow-mid); }
 .order-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 16px; }
 .order-id { font-family: 'Roboto Mono', monospace; font-weight: 700; font-size: 16px; color: var(--orange); }
@@ -41,6 +45,7 @@
 .nav-actions { display: flex; gap: 12px; }
 .nav-btn { padding: 8px 16px; border-radius: 12px; border: 1px solid var(--border-gray); background: transparent; cursor: pointer; transition: all 0.2s; }
 .nav-btn:hover { background: var(--canvas); }
+<<<<<<< HEAD
 .text-orange { color: var(--orange) !important; }
 .checkout-section-title { font-size: 18px; font-weight: 600; margin-bottom: 24px; display: flex; align-items: center; gap: 10px; color: var(--text-primary); }
 .checkout-placeholder-box { background-color: var(--canvas); height: 48px; border-radius: 12px; width: 100%; margin-bottom: 24px; }
@@ -61,3 +66,5 @@
 .checkout-alert-box { background-color: rgba(79, 124, 255, 0.08); border-radius: 12px; padding: 16px 20px; }
 .checkout-alert-title { color: #185abc; font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
 .checkout-alert-desc { color: #185abc; font-size: 13px; line-height: 1.5; margin: 0; }
+=======
+>>>>>>> origin/main
