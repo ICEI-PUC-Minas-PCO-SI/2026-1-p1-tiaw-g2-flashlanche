@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FlashLanche - Meus Pedidos</title>
+  <title>FlashLanche - Finalizar Pedido</title>
   <link rel="icon" type="image/jpeg" href="../../../assets/favicon.jpg">
   
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -14,17 +14,9 @@
 
   <link rel="stylesheet" href="../../../styles.css" />
   <link rel="stylesheet" href="orders.css" />
-<<<<<<< HEAD
 </head>
 <body>
 
-=======
-
-</head>
-<body>
-
-<!-- ═════════════════════════════════════════════════════TOP NAV════════════════════════════════════════════════════════════ -->
->>>>>>> origin/main
 <nav class="top-nav">
   <div class="container">
     <div class="nav-container">
@@ -39,7 +31,6 @@
   </div>
 </nav>
 
-<<<<<<< HEAD
 <section class="orders-container">
   <div class="container">
     <h1 class="orders-title"><i class="bi bi-credit-card"></i> Finalizar Pedido</h1>
@@ -50,7 +41,7 @@
           
           <div class="order-card">
             <h2 class="checkout-section-title"><i class="bi bi-bag-check text-orange"></i> Resumo do Pedido</h2>
-            <div class="checkout-placeholder-box"></div>
+            <div id="resumo-carrinho-container" class="checkout-placeholder-box">Nenhum item no carrinho</div>
             
             <h2 class="checkout-section-title"><i class="bi bi-person text-orange"></i> Informações</h2>
 
@@ -72,7 +63,7 @@
 
           <div class="order-card">
             <h2 class="checkout-section-title"><i class="bi bi-clock text-orange"></i> Horário de Retirada</h2>
-            <div class="checkout-placeholder-box"></div>
+            <div id="horario-retirada-container" class="checkout-placeholder-box"><i class="bi bi-lightning-charge-fill"></i> Retirada em 20-30 minutos</div>
           </div>
 
           <button type="submit" class="btn-checkout-submit">
@@ -114,33 +105,11 @@
       </div>
     </div>
 
-=======
-<!-- ═════════════════════════════════════════════════════PEDIDOS════════════════════════════════════════════════════════════ -->
-<section class="orders-container">
-  <div class="container">
-    <h1 class="orders-title"><i class="bi bi-clock-history"></i> Meus Pedidos</h1>
-    
-    <div class="orders-grid" id="orders-grid">
-      <div class="orders-empty">
-        <div class="orders-empty-icon"><i class="bi bi-inbox"></i></div>
-        <p style="color: var(--text-secondary); font-size: 16px;">Você ainda não fez nenhum pedido</p>
-        <button class="btn-action btn-action-primary" style="margin-top: 20px;" onclick="voltarParaShop()">
-          <i class="bi bi-shop"></i> Ir para Loja
-        </button>
-      </div>
-    </div>
->>>>>>> origin/main
   </div>
 </section>
 
 <script src="../../../db/db.js"></script>
 <script src="orders.js"></script>
 
-<<<<<<< HEAD
 </body>
 </html>
-=======
-
-</body>
-</html>
->>>>>>> origin/main
