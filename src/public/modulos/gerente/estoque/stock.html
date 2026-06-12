@@ -217,15 +217,15 @@
     <div class="modal-body">
       <input type="hidden" id="excluir-produto-id" />
       <p class="confirm-text">
-        Tem certeza que deseja <strong>zerar o estoque</strong> de
+        Tem certeza que deseja <strong>apagar estoque</strong> de
         <strong id="excluir-produto-nome"></strong>?
       </p>
-      <p class="confirm-sub">Essa ação definirá a quantidade como 0 e o status como <em>Esgotado</em>.</p>
+      <p class="confirm-sub">Essa ação <em>apagará</em> o produto da lista de estoque.</p>
     </div>
     <div class="modal-footer">
       <button class="btn-cancel" onclick="fecharModal('modal-excluir')">Cancelar</button>
       <button class="btn-danger" onclick="confirmarExclusao()">
-        <i class="bi bi-trash3"></i> Zerar Estoque
+        <i class="bi bi-trash3"></i> Apagar Estoque
       </button>
     </div>
   </div>

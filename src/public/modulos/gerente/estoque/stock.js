@@ -225,7 +225,7 @@ function criarLinhaTabela(item) {
         '<button class="btn-acao" title="Editar quantidade" onclick="abrirModalEditar(\'' + item.id + '\')">' +
           '<i class="bi bi-pencil"></i> Editar' +
         '</button>' +
-        '<button class="btn-acao btn-acao-danger" title="Zerar estoque" onclick="abrirModalExcluir(\'' + item.id + '\')">' +
+        '<button class="btn-acao btn-acao-danger" title="Apagar estoque" onclick="abrirModalExcluir(\'' + item.id + '\')">' +
           '<i class="bi bi-trash3"></i>' +
         '</button>' +
       '</div>' +
@@ -277,12 +277,23 @@ function alterarQuantidadeRapido(id, delta) {
 
 function popularSelectProdutos() {
   var select = document.getElementById('add-produto-id');
-  var lista = obterEstoque();
+  var dadosProdutos = localStorage.getItem('produtos');
+  var produtos = dadosProdutos ? JSON.parse(dadosProdutos) : [];
+  var estoque = obterEstoque();
+
+  var estoqueMap = {};
+  for (var i = 0; i < estoque.length; i++) {
+    estoqueMap[estoque[i].id] = estoque[i];
+  }
+
   select.innerHTML = '<option value="">Selecione um produto…</option>';
-  for (var i = 0; i < lista.length; i++) {
+  for (var j = 0; j < produtos.length; j++) {
+    var p = produtos[j];
+    var qtdAtual = estoqueMap[p.id] ? estoqueMap[p.id].quantidade : 0;
+
     var opt = document.createElement('option');
-    opt.value = lista[i].id;
-    opt.textContent = lista[i].imagem + ' ' + lista[i].nome + ' (atual: ' + lista[i].quantidade + ')';
+    opt.value = p.id;
+    opt.textContent = (p.imagem || '🍽️') + ' ' + p.nome + ' (atual: ' + qtdAtual + ')';
     select.appendChild(opt);
   }
 }
@@ -307,18 +318,49 @@ function salvarAdicao() {
   }
 
   var lista = obterEstoque();
+  var encontrado = false;
+
   for (var i = 0; i < lista.length; i++) {
     if (lista[i].id === id) {
       lista[i].quantidade += qtd;
       lista[i].status = calcularStatus(lista[i].quantidade);
+      encontrado = true;
       break;
     }
+  }
+
+  if (!encontrado) {
+    var dadosProdutos = localStorage.getItem('produtos');
+    var produtos = dadosProdutos ? JSON.parse(dadosProdutos) : [];
+    var produtoInfo = null;
+    for (var k = 0; k < produtos.length; k++) {
+      if (produtos[k].id === id) { produtoInfo = produtos[k]; break; }
+    }
+
+    if (!produtoInfo) {
+      exibirToast('Produto não encontrado no cadastro.', 'error');
+      return;
+    }
+
+    lista.push({
+      id:          produtoInfo.id,
+      nome:        produtoInfo.nome,
+      categoria:   produtoInfo.categoria,
+      descricao:   produtoInfo.descricao,
+      preco:       produtoInfo.preco,
+      imagem:      produtoInfo.imagem,
+      quantidade:  qtd,
+      fornecedor:  '',
+      dataEntrada: '',
+      status:      calcularStatus(qtd)
+    });
   }
 
   salvarEstoque(lista);
   fecharModal('modal-adicionar');
   renderizarTabela();
   atualizarResumoCards();
+  popularSelectProdutos();
   exibirToast('Estoque adicionado com sucesso!', 'success');
 }
 
@@ -395,19 +437,19 @@ function confirmarExclusao() {
   var id = document.getElementById('excluir-produto-id').value;
   var lista = obterEstoque();
 
+  var novaLista = [];
   for (var i = 0; i < lista.length; i++) {
-    if (lista[i].id === id) {
-      lista[i].quantidade = 0;
-      lista[i].status = 'esgotado';
-      break;
+    if (lista[i].id !== id) {
+      novaLista.push(lista[i]);
     }
   }
 
-  salvarEstoque(lista);
+  salvarEstoque(novaLista);
   fecharModal('modal-excluir');
   renderizarTabela();
   atualizarResumoCards();
-  exibirToast('Estoque zerado.', 'warning');
+  popularSelectProdutos();
+  exibirToast('Produto removido do estoque.', 'warning');
 }
 
 /* ========================= FILTROS E BUSCA ========================= */
