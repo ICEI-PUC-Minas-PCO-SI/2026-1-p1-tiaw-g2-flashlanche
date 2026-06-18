@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FlashLanche - Gerenciamento de Cupons</title>
+  <link rel="icon" type="image/jpeg" href="../../../assets/favicon.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  
+  <link rel="stylesheet" href="../../../styles.css"/>
+  <link rel="stylesheet" href="cupom.css"/>
+
+</head>
+<body>
+
+<div class="manager-layout">
+  <aside class="sidebar">
+    <a href="#" class="sidebar-logo">
+      <div class="sidebar-logo-mark"><i class="bi bi-bag-heart-fill"></i></div>
+      FlashLanche
+    </a>
+
+    <nav class="sidebar-nav">
+      <li><a href="../dashboard/dashboard.html"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+      <li><a href="../produtos/products.html"><i class="bi bi-box-seam"></i> Produtos</a></li>
+      <li><a href="../pedidos/orders.html"><i class="bi bi-receipt"></i> Pedidos</a></li>
+      <li><a href="../horarios/timeslots.html"><i class="bi bi-calendar-event"></i> Horários</a></li>
+      <li><a href="../estoque/stock.html"><i class="bi bi-stack"></i> Estoque</a></li>
+      <li><a href="../validacaoQR/qr-validation.html"><i class="bi bi-qr-code-scan"></i> QR Codes</a></li>
+      <li><a href="cupom.html" class="active"><i class="bi bi-ticket-detailed"></i> Cupons</a></li>
+      <li><a href="../relatorios/reports.html"><i class="bi bi-bar-chart"></i> Relatórios</a></li>
+    </nav>
+
+    <button class="logout-btn" onclick="logout()"><i class="bi bi-box-arrow-right"></i> Sair</button>
+  </aside>
+
+  <main class="content">
+    <div class="top-bar">
+      <div>
+        <h1 class="page-title"><i class="bi bi-ticket-detailed"></i> Cupons de Desconto</h1>
+        <p style="color: var(--text-secondary); margin-top: 4px; font-size: 14px;">Gerencie os códigos promocionais da lanchonete.</p>
+      </div>
+      <button class="btn-primary-cb" onclick="abrirModalCupom()">
+        <i class="bi bi-plus-circle"></i> Novo Cupom
+      </button>
+    </div>
+
+    <div class="table-container">
+      <table class="custom-table">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Desconto (%)</th>
+            <th>Validade</th>
+            <th>Status</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="tabela-cupons">
+          <tr><td colspan="5" style="text-align: center;">Carregando...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<div class="modal-overlay" id="modal-cupom">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h2 id="modal-titulo" class="modal-title">Novo Cupom</h2>
+      <button type="button" class="btn-close" onclick="fecharModal('modal-cupom')"></button>
+    </div>
+    <div class="modal-body">
+      <form id="form-cupom" onsubmit="salvarCupom(event)">
+        <input type="hidden" id="cupom-id" />
+
+        <div class="form-group">
+          <label>Código do Cupom (Ex: CALOURO20)</label>
+          <input type="text" id="cupom-codigo" class="form-control" required placeholder="Digite o código" style="text-transform: uppercase;">
+        </div>
+
+        <div class="form-group">
+          <label>Desconto (%)</label>
+          <input type="number" id="cupom-desconto" class="form-control" required min="1" max="100" placeholder="Ex: 10">
+        </div>
+
+        <div class="form-group">
+          <label>Data de Validade</label>
+          <input type="date" id="cupom-validade" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+          <label>Status</label>
+          <select id="cupom-status" class="form-control" required>
+            <option value="Ativo">Ativo</option>
+            <option value="Inativo">Inativo</option>
+          </select>
+        </div>
+
+        <div style="display: flex; gap: 12px; margin-top: 24px;">
+          <button type="button" class="btn-outline-cb" style="flex: 1;" onclick="fecharModal('modal-cupom')">Cancelar</button>
+          <button type="submit" class="btn-primary-cb" style="flex: 1;"><i class="bi bi-save"></i> Salvar Cupom</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-excluir">
+  <div class="modal-box" style="max-width: 400px; text-align: center;">
+    <div class="modal-body" style="padding: 32px 24px;">
+      <i class="bi bi-exclamation-triangle" style="font-size: 48px; color: var(--red); margin-bottom: 16px; display: block;"></i>
+      <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 8px;">Excluir Cupom?</h2>
+      <p style="color: var(--text-secondary); margin-bottom: 24px;">Esta ação não pode ser desfeita e o código deixará de funcionar imediatamente.</p>
+      
+      <div style="display: flex; gap: 12px;">
+        <button class="btn-outline-cb" style="flex: 1; justify-content: center;" onclick="fecharModal('modal-excluir')">Cancelar</button>
+        <button class="btn-primary-cb" style="flex: 1; justify-content: center; background: var(--red); border-color: var(--red);" onclick="confirmarExclusao()">Sim, Excluir</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tts-widget-gestor" role="region" aria-label="Controlos de Leitura de Ecrã">
+  <div class="tts-label" aria-hidden="true">
+    <i class="bi bi-universal-access-circle"></i> Leitor de Página
+  </div>
+  
+  <div class="tts-controls">
+    <button id="tts-play-pause" class="tts-btn" aria-label="Iniciar narração da página" onclick="toggleLeitura()">
+      <i class="bi bi-play-circle-fill"></i>
+    </button>
+    <button id="tts-stop" class="tts-btn tts-stop" aria-label="Parar narração" onclick="pararLeitura()" disabled>
+      <i class="bi bi-stop-circle-fill"></i>
+    </button>
+  </div>
+</div>
+
+<script src="cupom.js"></script>
+
+</body>
+</html>

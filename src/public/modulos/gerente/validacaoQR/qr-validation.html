@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="../../../styles.css"/>
   <link rel="stylesheet" href="qr-validation.css"/>
 
+  <script src="https://unpkg.com/html5-qrcode"></script>
 </head>
 <body>
 
@@ -33,6 +34,8 @@
       <li><a href="../horarios/timeslots.html"><i class="bi bi-calendar-event"></i> Horários</a></li>
       <li><a href="../estoque/stock.html"><i class="bi bi-stack"></i> Estoque</a></li>
       <li><a href="qr-validation.html" class="active"><i class="bi bi-qr-code-scan"></i> QR Codes</a></li>
+      <li><a href="../cupoms/cupom.html"><i class="bi bi-ticket"></i> Cupons</a></li>
+      <li><a href="../relatorios/reports.html"><i class="bi bi-bar-chart"></i> Relatórios</a></li>
     </nav>
 
     <button class="logout-btn" onclick="logout()"><i class="bi bi-box-arrow-right"></i> Sair</button>
@@ -47,12 +50,32 @@
     <!-- ═════════════════════════════════════════════════════SCANNER════════════════════════════════════════════════════════════ -->
     <div class="scanner-box">
       <label class="form-label"><i class="bi bi-qr-code"></i> Código QR ou ID</label>
-      <input type="text" id="qr-input" class="form-input" placeholder="Cole o código QR aqui ou escanear..." autofocus>
-      <button class="btn-scan" onclick="validarQR()"><i class="bi bi-check-circle"></i> Validar e Marcar como Retirado</button>
+      
+      <div style="display: flex; gap: 10px; margin-bottom: 16px;">
+        <input type="text" id="qr-input" class="form-input" placeholder="Cole o texto do QR aqui ou use a câmera..." autofocus>
+        
+        <button class="btn-camera" onclick="abrirCamera()" id="btn-abrir-camera">
+          <i class="bi bi-camera"></i> Câmera
+        </button>
+      </div>
+      
+      <button class="btn-scan" onclick="validarQR()">
+        <i class="bi bi-check-circle"></i> Validar e Marcar como Retirado
+      </button>
+
+      <div id="camera-container" style="display: none; margin-top: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <h3 style="font-size: 14px; font-weight: 700; color: var(--text-primary); margin: 0;">Escaneando...</h3>
+          <button class="btn-action btn-action-danger" onclick="fecharCamera()">Cancelar</button>
+        </div>
+        <div id="reader" style="width: 100%; border-radius: 12px; overflow: hidden; border: 2px solid var(--orange);"></div>
+      </div>
     </div>
 
     <!-- ═════════════════════════════════════════════════════RESULTADO VALIDACAO════════════════════════════════════════════════════════════ -->
     <div id="result-container"></div>
+
+
 
     <!-- ═════════════════════════════════════════════════════ULTIMOS QR VALIDADOS════════════════════════════════════════════════════════════ -->
     <h2 style="font-size: 18px; font-weight: 700; margin: 32px 0 16px;">Histórico de QRs Escaneados</h2>
@@ -75,6 +98,21 @@
       </table>
     </div>
   </main>
+</div>
+
+<div class="tts-widget-gestor" role="region" aria-label="Controlos de Leitura de Ecrã">
+  <div class="tts-label" aria-hidden="true">
+    <i class="bi bi-universal-access-circle"></i> Leitor de Página
+  </div>
+  
+  <div class="tts-controls">
+    <button id="tts-play-pause" class="tts-btn" aria-label="Iniciar narração da página" onclick="toggleLeitura()">
+      <i class="bi bi-play-circle-fill"></i>
+    </button>
+    <button id="tts-stop" class="tts-btn tts-stop" aria-label="Parar narração" onclick="pararLeitura()" disabled>
+      <i class="bi bi-stop-circle-fill"></i>
+    </button>
+  </div>
 </div>
 
 <script src="../../../db/db.js"></script>

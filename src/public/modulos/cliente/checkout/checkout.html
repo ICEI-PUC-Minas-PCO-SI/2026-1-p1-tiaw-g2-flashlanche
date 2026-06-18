@@ -44,10 +44,7 @@
         <div class="checkout-section">
           <div class="section-title"><i class="bi bi-bag-check"></i> Resumo do Pedido</div>
           <div class="order-summary" id="order-summary"></div>
-        </div>
-
-        <!-- ═════════════════════════════════════════════════════INFORMAÇÕES PESSOAIS═════════════════════════════════════════ -->
-        <div class="checkout-section">
+        
           <div class="section-title"><i class="bi bi-person"></i> Informações</div>
           
           <div class="form-group">
@@ -97,12 +94,6 @@
 
           <div style="border-top: 1px solid var(--border-gray); padding-top: 20px;">
             <div style="font-size: 14px; color: var(--text-secondary); margin-bottom: 12px;">Seu pedido será preparado no horário selecionado. Apresente o QR Code na retirada.</div>
-            <div style="background: rgba(79,124,255,0.10); border: 1px solid rgba(79,124,255,0.20); border-radius: 10px; padding: 12px; margin-top: 16px;">
-              <div style="font-size: 12px; color: var(--blue); font-weight: 600; display: flex; align-items: center; gap: 6px;">
-                <i class="bi bi-info-circle"></i> Importante
-              </div>
-              <div style="font-size: 12px; color: var(--text-secondary); margin-top: 6px;">Salve ou anote o número do seu pedido. Você precisará dele para validar a retirada.</div>
-            </div>
           </div>
         </div>
       </div>
@@ -131,7 +122,21 @@
   </div>
 </div>
 
-<script src="../../../db/db.js"></script>
+<div class="tts-widget" role="region" aria-label="Controlos de Leitura de Ecrã">
+  <div class="tts-label" aria-hidden="true">
+    <i class="bi bi-universal-access-circle"></i> Leitor de Página
+  </div>
+  
+  <div class="tts-controls">
+    <button id="tts-play-pause" class="tts-btn" aria-label="Iniciar narração da página" onclick="toggleLeitura()">
+      <i class="bi bi-play-circle-fill"></i>
+    </button>
+    <button id="tts-stop" class="tts-btn tts-stop" aria-label="Parar narração" onclick="pararLeitura()" disabled>
+      <i class="bi bi-stop-circle-fill"></i>
+    </button>
+  </div>
+</div>
+
 <script src="checkout.js"></script>
 
 

@@ -17,7 +17,6 @@
 </head>
 <body>
 
-<!-- ═════════════════════════════════════════════════════TOP NAV════════════════════════════════════════════════════════════ -->
 <nav class="top-nav">
   <div class="container">
     <div class="nav-container">
@@ -32,13 +31,11 @@
   </div>
 </nav>
 
-<!-- ═════════════════════════════════════════════════════CART SECTION═══════════════════════════════════════════════════════ -->
 <section class="cart-container">
   <div class="container">
     <h1 class="cart-title"><i class="bi bi-cart-fill"></i> Seu Carrinho</h1>
     
     <div class="cart-layout">
-      <!-- ═════════════════════════════════════════════════════ITEMS════════════════════════════════════════════════════════════ -->
       <div class="cart-items" id="cart-items-container">
         <div class="cart-empty">
           <p style="font-size: 48px; margin-bottom: 16px;"><i class="bi bi-inbox"></i></p>
@@ -47,9 +44,17 @@
         </div>
       </div>
 
-      <!-- ═════════════════════════════════════════════════════SUMARIO═════════════════════════════════════════════════════ -->
       <div class="cart-summary">
-        <h3 style="margin-bottom: 20px; font-weight: 700;">Resumo</h3>
+        <h3 style="margin-bottom: 20px; font-weight: 700;">Resumo do Pedido</h3>
+        
+        <div class="coupon-box">
+          <label class="summary-label" style="display: block; margin-bottom: 8px; font-size: 13px;">Possui cupom de desconto?</label>
+          <div style="display: flex; gap: 8px;">
+            <input type="text" id="input-cupom" class="coupon-input" placeholder="Digite o código" />
+            <button class="btn-apply" onclick="aplicarCupom()">Aplicar</button>
+          </div>
+          <div id="cupom-msg" class="coupon-msg"></div>
+        </div>
         
         <div class="summary-row">
           <span class="summary-label">Subtotal</span>
@@ -59,6 +64,11 @@
         <div class="summary-row">
           <span class="summary-label">Taxa (0%)</span>
           <span class="summary-value">R$ <span id="taxa">0.00</span></span>
+        </div>
+
+        <div class="summary-row" id="row-desconto" style="display: none;">
+          <span class="summary-label" style="color: var(--green); font-weight: 600;">Desconto Aplicado</span>
+          <span class="summary-value" style="color: var(--green);">- R$ <span id="valor-desconto">0.00</span></span>
         </div>
         
         <div class="summary-total">
@@ -77,6 +87,21 @@
     </div>
   </div>
 </section>
+
+<div class="tts-widget" role="region" aria-label="Controlos de Leitura de Ecrã">
+  <div class="tts-label" aria-hidden="true">
+    <i class="bi bi-universal-access-circle"></i> Leitor de Página
+  </div>
+  
+  <div class="tts-controls">
+    <button id="tts-play-pause" class="tts-btn" aria-label="Iniciar narração da página" onclick="toggleLeitura()">
+      <i class="bi bi-play-circle-fill"></i>
+    </button>
+    <button id="tts-stop" class="tts-btn tts-stop" aria-label="Parar narração" onclick="pararLeitura()" disabled>
+      <i class="bi bi-stop-circle-fill"></i>
+    </button>
+  </div>
+</div>
 
 <script src="../../../db/db.js"></script>
 <script src="cart.js"></script>

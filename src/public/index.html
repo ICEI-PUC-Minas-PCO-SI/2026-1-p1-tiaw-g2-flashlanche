@@ -198,7 +198,6 @@
         <ul class="footer-links">
           <li><a href="modulos/cliente/cardapio/shop.html">Cardápio</a></li>
           <li><a href="modulos/cliente/pedidos/orders.html">Meus pedidos</a></li>
-          <li><a href="modulos/cliente/rastreio/tracking.html">QR Code</a></li>
         </ul>
       </div>
 
@@ -207,7 +206,7 @@
         <ul class="footer-links">
           <li><a href="modulos/gerente/dashboard/dashboard.html">Painel do gestor</a></li>
           <li><a href="modulos/gerente/pedidos/orders.html">Pedidos em tempo real</a></li>
-          <li><a href="modulos/gerente/dashboard/dashboard.html">Métricas</a></li>
+          <li><a href="modulos/gerente/relatorios/reports.html">Métricas</a></li>
           <li><a href="modulos/gerente/produtos/products.html">Gerenciar cardápio</a></li>
         </ul>
       </div>
@@ -225,7 +224,7 @@
     <hr class="footer-divider" />
 
     <div class="footer-bottom">
-      <span class="footer-copy">© 2025 FlashLanche. Projeto acadêmico.</span>
+      <span class="footer-copy">© 2026 FlashLanche. Projeto acadêmico.</span>
       <div class="footer-legal">
         <a href="#">Privacidade</a>
         <a href="#">Termos de uso</a>
@@ -234,6 +233,22 @@
   </div>
 </footer>
 
+<div class="tts-widget" role="region" aria-label="Controlos de Leitura de Ecrã">
+  <div class="tts-label" aria-hidden="true">
+    <i class="bi bi-universal-access-circle"></i> Leitor de Página
+  </div>
+  
+  <div class="tts-controls">
+    <button id="tts-play-pause" class="tts-btn" aria-label="Iniciar narração da página" onclick="toggleLeitura()">
+      <i class="bi bi-play-circle-fill"></i>
+    </button>
+    <button id="tts-stop" class="tts-btn tts-stop" aria-label="Parar narração" onclick="pararLeitura()" disabled>
+      <i class="bi bi-stop-circle-fill"></i>
+    </button>
+  </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="index.js"></script>
 </body>
 </html>

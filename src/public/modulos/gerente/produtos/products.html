@@ -19,7 +19,7 @@
 <body>
 
 <div class="manager-layout">
-  <!-- ═════════════════════════════════════════════════════SIDEBAR═══════════════════════════════════════ -->
+  <!-- ========================= SIDEBAR ========================= -->
   <aside class="sidebar">
     <a href="#" class="sidebar-logo">
       <div class="sidebar-logo-mark"><i class="bi bi-bag-heart-fill"></i></div>
@@ -33,64 +33,107 @@
       <li><a href="../horarios/timeslots.html"><i class="bi bi-calendar-event"></i> Horários</a></li>
       <li><a href="../estoque/stock.html"><i class="bi bi-stack"></i> Estoque</a></li>
       <li><a href="../validacaoQR/qr-validation.html"><i class="bi bi-qr-code-scan"></i> QR Codes</a></li>
+      <li><a href="../cupoms/cupom.html"><i class="bi bi-ticket"></i> Cupons</a></li>
+      <li><a href="../relatorios/reports.html"><i class="bi bi-bar-chart"></i> Relatórios</a></li>
     </nav>
 
     <button class="logout-btn" onclick="logout()"><i class="bi bi-box-arrow-right"></i> Sair</button>
   </aside>
 
-  <!-- ═════════════════════════════════════════════════════CONTENT═══════════════════════════════════════ -->
+  <!-- ========================= CONTENT ========================= -->
   <main class="content">
     <div class="top-bar">
-      <h1 class="page-title"><i class="bi bi-box-seam"></i> Produtos</h1>
-      <button class="btn-novo" onclick="abrirModal()"><i class="bi bi-plus-circle"></i> Novo Produto</button>
+      <h1 class="page-title"><i class="bi bi-box-seam"></i> 
+        Produtos
+      </h1>
+      <button class="btn-novo" onclick="abrirModal()">
+        <i class="bi bi-plus-circle"></i> 
+        Novo Produto
+      </button>
     </div>
 
     <div class="products-grid" id="products-grid"></div>
   </main>
 </div>
 
-<!-- ═════════════════════════════════════════════════════MODAL FORMULARIO═════════════════════════════════════════ -->
+<!-- ========================= MODAL FORMULARIO ========================= -->
 <div class="modal" id="modal-form">
   <div class="modal-content">
-    <div class="modal-header" id="modal-title">Novo Produto</div>
+    <div class="modal-header" id="modal-title">
+      Novo Produto
+    </div>
     
     <div class="form-group">
-      <label class="form-label">Nome</label>
+      <label class="form-label">
+        Nome
+      </label>
       <input type="text" id="nome" class="form-input" placeholder="Ex: Misto Quente">
     </div>
 
     <div class="form-group">
-      <label class="form-label">Descrição</label>
+      <label class="form-label">
+        Descrição
+      </label>
       <input type="text" id="descricao" class="form-input" placeholder="Ex: Pão de queijo quente">
     </div>
 
     <div class="form-group">
-      <label class="form-label">Preço (R$)</label>
+      <label class="form-label">
+        Preço (R$)
+      </label>
       <input type="number" id="preco" class="form-input" placeholder="8.50" step="0.01">
     </div>
 
     <div class="form-group">
-      <label class="form-label">Categoria</label>
+      <label class="form-label">
+        Categoria
+      </label>
       <select id="categoria" class="form-input">
-        <option value="lanches">Lanches</option>
-        <option value="bebidas">Bebidas</option>
-        <option value="doces">Doces</option>
+        <option value="lanches">
+          Lanches
+        </option>
+        <option value="bebidas">
+          Bebidas
+        </option>
+        <option value="refeições">
+          Refeições
+        </option>
       </select>
     </div>
 
     <div class="form-group">
-      <label class="form-label">Emoji/Ícone</label>
+      <label class="form-label">
+        Emoji/Ícone
+      </label>
       <input type="text" id="imagem" class="form-input" placeholder="🥪">
     </div>
 
-    <button class="btn-submit" id="btn-save" onclick="salvarProduto()">Adicionar Produto</button>
-    <button class="btn-submit" style="background: var(--text-secondary); margin-top: 8px;" onclick="fecharModal()">Cancelar</button>
+    <button class="btn-submit" id="btn-save" onclick="salvarProduto()">
+      Adicionar Produto
+    </button>
+    <button class="btn-submit" style="background: var(--text-secondary); margin-top: 8px;" onclick="fecharModal()">
+      Cancelar
+    </button>
+  </div>
+</div>
+
+<div class="tts-widget-gestor" role="region" aria-label="Controlos de Leitura de Ecrã">
+  <div class="tts-label" aria-hidden="true">
+    <i class="bi bi-universal-access-circle"></i> Leitor de Página
+  </div>
+  
+  <div class="tts-controls">
+    <button id="tts-play-pause" class="tts-btn" aria-label="Iniciar narração da página" onclick="toggleLeitura()">
+      <i class="bi bi-play-circle-fill"></i>
+    </button>
+    <button id="tts-stop" class="tts-btn tts-stop" aria-label="Parar narração" onclick="pararLeitura()" disabled>
+      <i class="bi bi-stop-circle-fill"></i>
+    </button>
   </div>
 </div>
 
 <script src="../../../db/db.js"></script>
 <script src="products.js"></script>
-
 
 </body>
 </html>

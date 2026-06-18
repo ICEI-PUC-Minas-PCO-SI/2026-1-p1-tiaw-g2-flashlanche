@@ -35,3 +35,22 @@
   .checkout-layout { grid-template-columns: 1fr; }
   .horario-grid { grid-template-columns: repeat(3, 1fr); }
 }
+
+/* ========================= VALIDAÇÃO DE CAMPOS (SDD) ========================= */
+.input-error {
+  border-color: var(--red, #e74c3c) !important;
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.15) !important;
+}
+
+.input-success {
+  border-color: var(--green, #2ecc71) !important;
+}
+
+.error-msg {
+  display: none; /* Escondido por padrão */
+  color: var(--red, #e74c3c);
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 6px;
+  animation: slideUp 0.3s ease;
+}
