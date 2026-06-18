@@ -15,8 +15,6 @@
   <link rel="stylesheet" href="../../../styles.css" />
   <link rel="stylesheet" href="orders.css" />
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
 </head>
 <body>
 
@@ -52,48 +50,9 @@
   </div>
 </section>
 
-
 <script src="../../../db/db.js"></script>
 <script src="orders.js"></script>
 
-<div class="modal-overlay" id="modal-pedido" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; align-items: center; justify-content: center;">
-  <div class="modal-content" style="background: var(--white); border-radius: 20px; padding: 32px; text-align: center; max-width: 400px; width: 90%; position: relative;">
-    
-    <button onclick="fecharModal()" style="position: absolute; top: 16px; right: 16px; background: transparent; border: none; font-size: 24px; cursor: pointer; color: var(--text-secondary);"><i class="bi bi-x-circle"></i></button>
-
-    <h2 style="font-size: 20px; margin-bottom: 8px;">Detalhes do Pedido</h2>
-    <div class="order-id" id="modal-pedido-id" style="font-size: 24px; margin-bottom: 24px;">---</div>
-    
-    <div id="modal-status-badge" style="margin-bottom: 24px;"></div>
-
-    <div style="background: var(--canvas); border-radius: 12px; padding: 16px; margin-bottom: 24px; text-align: left;">
-      <div style="font-size: 14px; color: var(--text-secondary); margin-bottom: 8px;"><i class="bi bi-clock"></i> Horário de Retirada: <b id="modal-pedido-horario" style="color: var(--text-primary);">--:--</b></div>
-      <div style="font-size: 14px; color: var(--text-secondary);"><i class="bi bi-box-seam"></i> Total: <b id="modal-pedido-total" style="color: var(--text-primary);">R$ 0.00</b></div>
-    </div>
-
-    <div id="modal-qr-container" style="display: flex; justify-content: center; margin-bottom: 24px;">
-      <div id="qr-code-canvas" style="border: 2px solid var(--orange); border-radius: 14px; padding: 12px; background: white;"></div>
-    </div>
-
-    <p id="modal-qr-aviso" style="color: var(--text-secondary); font-size: 13px; margin-bottom: 0;">Apresente este QR Code no balcão para retirar seu lanche.</p>
-
-  </div>
-</div>
-
-<div class="tts-widget" role="region" aria-label="Controlos de Leitura de Ecrã">
-  <div class="tts-label" aria-hidden="true">
-    <i class="bi bi-universal-access-circle"></i> Leitor de Página
-  </div>
-  
-  <div class="tts-controls">
-    <button id="tts-play-pause" class="tts-btn" aria-label="Iniciar narração da página" onclick="toggleLeitura()">
-      <i class="bi bi-play-circle-fill"></i>
-    </button>
-    <button id="tts-stop" class="tts-btn tts-stop" aria-label="Parar narração" onclick="pararLeitura()" disabled>
-      <i class="bi bi-stop-circle-fill"></i>
-    </button>
-  </div>
-</div>
 
 </body>
 </html>
