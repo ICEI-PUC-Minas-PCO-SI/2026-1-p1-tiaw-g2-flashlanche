@@ -1,107 +1,204 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FlashLanche - Peça antes, retire na hora</title>
-    <link rel="icon" type="image/jpeg" href="/assets/favicon.jpg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlashLanche - Peça antes, retire na hora</title>
+  <link rel="icon" type="image/jpeg" href="/assets/favicon.png">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-
-    <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-
-<!-- ═════════════════════════════════════════════════════HEADER════════════════════════════════════════════════════════════ -->
-    <header id="header">
-    <div class="container">
-        <div class="header-inner">
-        <a href="#" class="logo">
-            <div class="logo-mark">
-                <i class="bi bi-bag-heart-fill"></i>
-            </div>
-            <span class="logo-name">Flash<span>Lanche</span></span>
-        </a>
-
-        <ul class="nav-links">
-            <li><a href="#beneficios">Benefícios</a></li>
-            <li><a href="">Como funciona</a></li>
-            <li><a href="">Gerenciamento</a></li>
-        </ul>
-
-        <div class="header-actions">
-            <a href="modulos/cliente/cardapio/shop.html" class="btn-outline-cb header-login" style="padding:10px 18px;font-size:13px;">Entrar</a>
-            <a href="modulos/cliente/cardapio/shop.html" class="btn-primary-cb" style="padding:10px 18px;font-size:13px;">
-            <i class="bi bi-arrow-right-circle-fill"></i> Começar
-            </a>
-        </div>
-        </div>
-    </div>
-    </header>
-
-<!-- ═════════════════════════════════════════════════════HERO════════════════════════════════════════════════════════════ -->
-    <section id="hero">
-
-    <div class="container">
-        <div class="row">
-        <div class="col-lg-6 col-md-7" style="padding-bottom:80px;">
-
-            <div class="hero-tag">
-            <div class="hero-tag-dot"></div>
-            <span class="body-sm text-orange" style="font-weight:700;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;">Sistema inativo na universidade</span>
-            </div>
-
-            <h1 class="display-text hero-headline">
-            Peça antes.<br>
-            <span class="accent">Retire na hora.</span><br>
-            Sem fila.
-            </h1>
-
-            <p class="body-lg hero-sub">
-            O FlashLanche permite que você agende seus pedidos na lanchonete antes do intervalo e retire no horário exato, com um simples QR Code.
-            </p>
-
-            <div class="hero-actions">
-            <a href="modulos/cliente/cardapio/shop.html" class="btn-primary-cb">
-                <i class="bi bi-bag-check-fill"></i>
-                Fazer meu pedido
-            </a>
-            <a href="#como-funciona" class="btn-outline-cb">
-                <i class="bi bi-play-circle"></i>
-                Ver como funciona
-            </a>
-            </div>
-
-            <div class="hero-stats">
-            <div class="hero-stat-item">
-                <div class="hero-stat-num">–<span>80%</span></div>
-                <div class="hero-stat-label">Redução no tempo de espera</div>
-            </div>
-            <div class="hero-stat-item">
-                <div class="hero-stat-num"><span>2</span>min</div>
-                <div class="hero-stat-label">Para fazer um pedido</div>
-            </div>
-            <div class="hero-stat-item">
-                <div class="hero-stat-num"><span>QR</span></div>
-                <div class="hero-stat-label">Retirada instantânea</div>
-            </div>
-            </div>
-        </div>
-        </div>
-        </div>
-    </div>
-    </section>
-
-<!-- ═════════════════════════════════════════════════════BENEFÍCIOS═══════════════════════════════════════════════════════════ -->
- <section id="beneficios" class="section-pad">
+<!-- ═══════════════════════════════════════════════
+     HEADER
+═══════════════════════════════════════════════ -->
+<header id="header">
   <div class="container">
-    <div class="text-center mb-5">
+    <div class="header-inner">
+
+      <a href="#" class="logo">
+        <div class="logo-mark"><i class="bi bi-lightning-charge-fill"></i></div>
+        <span class="logo-name">Flash<span>Lanche</span></span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#beneficios">Benefícios</a></li>
+        <li><a href="#como-funciona">Como funciona</a></li>
+        <li><a href="#bloco-info">Gerenciamento</a></li>
+      </ul>
+
+      <div class="header-actions" id="header-actions">
+        <!-- Preenchido dinamicamente por auth.js conforme o estado de login (visitante/cliente/gerente) -->
+      </div>
+
+    </div>
+  </div>
+</header>
+
+
+<!-- ═══════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="container">
+    <div class="row align-items-end">
+
+      <!-- Texto -->
+      <div class="col-lg-6 col-md-7" style="padding-bottom:80px;">
+
+        <div class="hero-tag fade-up">
+          <div class="hero-tag-dot"></div>
+          <span class="body-sm text-orange label-upper">Sistema ativo na universidade</span>
+        </div>
+
+        <h1 class="display-text hero-headline fade-up fade-up-delay-1">
+          Peça antes.<br>
+          <span class="accent">Retire na hora.</span><br>
+          Sem fila.
+        </h1>
+
+        <p class="body-lg hero-sub fade-up fade-up-delay-2">
+          O FlashLanche permite que você agende seus pedidos na lanchonete antes do intervalo — e retire no horário exato, com um simples QR Code.
+        </p>
+
+        <div class="hero-actions fade-up fade-up-delay-3">
+          <a href="modulos/cliente/cardapio/shop.html" class="btn-primary-cb js-guard-cliente">
+            <i class="bi bi-bag-check-fill"></i> Fazer meu pedido
+          </a>
+          <a href="#como-funciona" class="btn-outline-cb">
+            <i class="bi bi-play-circle"></i> Ver como funciona
+          </a>
+        </div>
+
+        <div class="hero-stats fade-up fade-up-delay-4">
+          <div class="hero-stat-item">
+            <div class="hero-stat-num"><span>80%</span></div>
+            <div class="hero-stat-label">Redução no tempo de espera</div>
+          </div>
+          <div class="hero-stat-item">
+            <div class="hero-stat-num"><span>2min</span></div>
+            <div class="hero-stat-label">Para fazer um pedido</div>
+          </div>
+          <div class="hero-stat-item">
+            <div class="hero-stat-num"><span>QR</span></div>
+            <div class="hero-stat-label">Retirada instantânea</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual -->
+      <div class="col-lg-6">
+        <div class="hero-visual">
+
+          <!-- QR flutuante -->
+          <div class="qr-float-card">
+            <div class="qr-label">QR do pedido</div>
+            <div class="qr-hero">
+              <i class="bi bi-qr-code text-black qr-fm-code"></i>
+            </div>
+            <div class="qr-badge"><span>Pronto! ✓</span></div>
+          </div>
+
+          <!-- Mock do celular -->
+          <div class="hero-phone-mock">
+            <div class="phone-notch"></div>
+            <div class="phone-header-bar">
+              <div>
+                <div class="phone-greeting">Olá, Maria 👋</div>
+                <div class="phone-subtitle">Intervalo em 14 min</div>
+              </div>
+              <div class="phone-avatar"><i class="bi bi-person-fill"></i></div>
+            </div>
+            <div class="phone-search">
+              <i class="bi bi-search"></i>
+              <span>Buscar produto...</span>
+            </div>
+            <div class="phone-section-label">Categorias</div>
+            <div class="phone-cats">
+              <span class="phone-cat active">🥪 Lanches</span>
+              <span class="phone-cat">☕ Bebidas</span>
+              <span class="phone-cat">🍱 Marmitas</span>
+            </div>
+            <div class="phone-section-label">Em destaque</div>
+            <div class="phone-product-card">
+              <div class="phone-product-img" style="background:#fff8f0;">🥪</div>
+              <div class="phone-product-info">
+                <div class="phone-product-name">Misto Quente</div>
+                <div class="phone-product-price">R$ 8,50</div>
+              </div>
+              <button class="phone-add-btn">+</button>
+            </div>
+            <div class="phone-product-card">
+              <div class="phone-product-img" style="background:#f0f8ff;">☕</div>
+              <div class="phone-product-info">
+                <div class="phone-product-name">Café com Leite</div>
+                <div class="phone-product-price">R$ 5,00</div>
+              </div>
+              <button class="phone-add-btn">+</button>
+            </div>
+            <div class="phone-product-card">
+              <div class="phone-product-img" style="background:#fff8f0;">🍔</div>
+              <div class="phone-product-info">
+                <div class="phone-product-name">Hamburguer</div>
+                <div class="phone-product-price">R$ 20,00</div>
+              </div>
+              <button class="phone-add-btn">+</button>
+            </div>
+            <div class="phone-product-card">
+              <div class="phone-product-img" style="background:#fff8f0;">🥤</div>
+              <div class="phone-product-info">
+                <div class="phone-product-name">Refrigerante</div>
+                <div class="phone-product-price">R$ 6,00</div>
+              </div>
+              <button class="phone-add-btn">+</button>
+            </div>
+          </div>
+
+          <!-- Card de status flutuante -->
+          <div class="pickup-float-card">
+            <div class="pf-status">
+              <div class="pf-dot"></div>
+              <span class="pf-status-text">Em preparo</span>
+            </div>
+            <div class="pf-order-name">Misto + Café com Leite</div>
+            <div class="pf-order-id">#CB-20491</div>
+            <div class="pf-progress">
+              <div class="pf-progress-bar-bg">
+                <div class="pf-progress-bar"></div>
+              </div>
+              <div class="pf-progress-label">
+                <span>Preparando...</span>
+                <strong>72%</strong>
+              </div>
+            </div>
+            <div class="pf-time-row">
+              <div class="pf-time-badge">12:30</div>
+              <div class="pf-time-label">Retirada agendada</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     BENEFÍCIOS
+═══════════════════════════════════════════════ -->
+<section id="beneficios" class="section-pad">
+  <div class="container">
+
+    <div class="text-center mb-5 fade-up">
       <span class="section-eyebrow">Por que usar</span>
       <h2 class="h1-text">Tudo que você precisa<br>no intervalo certo</h2>
       <p class="body-md text-muted-cb mt-3" style="max-width:480px;margin:0 auto;">
@@ -110,31 +207,28 @@
     </div>
 
     <div class="row g-3">
-      <div class="col-md-6 col-lg-3">
+      <div class="col-md-6 col-lg-3 fade-up">
         <div class="benefit-card">
           <div class="benefit-icon orange"><i class="bi bi-clock-history"></i></div>
           <div class="benefit-title">Zero espera no caixa</div>
           <div class="benefit-desc">Seu pedido fica pronto antes de você chegar. Só mostrar o QR e pegar.</div>
         </div>
       </div>
-
-      <div class="col-md-6 col-lg-3">
+      <div class="col-md-6 col-lg-3 fade-up fade-up-delay-1">
         <div class="benefit-card">
           <div class="benefit-icon green"><i class="bi bi-calendar-check"></i></div>
           <div class="benefit-title">Agendamento preciso</div>
           <div class="benefit-desc">Escolha o horário de retirada ideal para o seu intervalo — a lanchonete se organiza por você.</div>
         </div>
       </div>
-
-      <div class="col-md-6 col-lg-3">
+      <div class="col-md-6 col-lg-3 fade-up fade-up-delay-2">
         <div class="benefit-card">
           <div class="benefit-icon blue"><i class="bi bi-qr-code-scan"></i></div>
           <div class="benefit-title">Retirada por QR Code</div>
           <div class="benefit-desc">Cada pedido gera um código único. Validação instantânea, sem papel, sem confusão.</div>
         </div>
       </div>
-
-      <div class="col-md-6 col-lg-3">
+      <div class="col-md-6 col-lg-3 fade-up fade-up-delay-3">
         <div class="benefit-card">
           <div class="benefit-icon yellow"><i class="bi bi-graph-up-arrow"></i></div>
           <div class="benefit-title">Métricas para a lanchonete</div>
@@ -142,17 +236,387 @@
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
-<!-- ═════════════════════════════════════════════════════CTA═══════════════════════════════════════════════════════════ -->
+
+<!-- ═══════════════════════════════════════════════
+     BLOCO INFORMATIVO — painel do gestor
+═══════════════════════════════════════════════ -->
+<section id="bloco-info" class="section-pad">
+  <div class="info-bg-glow"></div>
+  <div class="container pos-relative z-1">
+    <div class="row align-items-center g-5">
+
+      <!-- Texto -->
+      <div class="col-lg-5 fade-up">
+        <div class="info-chip">
+          <i class="bi bi-speedometer2 text-orange" style="font-size:12px;"></i>
+          <span>Painel do gestor</span>
+        </div>
+        <h2 class="h1-text info-headline">Gerenciamento<br><span class="accent">total em tempo real</span></h2>
+        <p class="body-md info-sub">
+          A interface de gestão entrega visibilidade completa sobre pedidos, horários, filas e receita — tudo em uma única tela operacional.
+        </p>
+
+        <div class="info-metrics">
+          <div class="info-metric-item">
+            <div class="info-metric-num">147<span class="unit">+</span></div>
+            <div class="info-metric-label">Pedidos hoje</div>
+          </div>
+          <div class="info-metric-item">
+            <div class="info-metric-num">R$<span class="unit">2k</span></div>
+            <div class="info-metric-label">Receita do dia</div>
+          </div>
+        </div>
+
+        <div class="info-actions">
+          <a href="modulos/gerente/dashboard/dashboard.html" class="btn-primary-cb js-guard-gerente">Acessar painel</a>
+          <a href="#" class="btn-ghost-white">Saber mais <i class="bi bi-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Dashboard preview -->
+      <div class="col-lg-7 fade-up fade-up-delay-2">
+        <div class="dashboard-preview">
+          <div class="dash-topbar">
+            <div class="dash-topbar-dot" style="background:#ff5f57;"></div>
+            <div class="dash-topbar-dot" style="background:#ffbd2e;margin-left:4px;"></div>
+            <div class="dash-topbar-dot" style="background:#28c840;margin-left:4px;"></div>
+            <span class="dash-topbar-title">FlashLanche — Painel de Gestão</span>
+          </div>
+          <div class="dash-body">
+            <div class="dash-metrics-row">
+              <div class="dash-metric-card">
+                <div class="dash-metric-label">Pedidos hoje</div>
+                <div class="dash-metric-val orange">147</div>
+              </div>
+              <div class="dash-metric-card">
+                <div class="dash-metric-label">Em preparo</div>
+                <div class="dash-metric-val">8</div>
+              </div>
+              <div class="dash-metric-card">
+                <div class="dash-metric-label">Concluídos</div>
+                <div class="dash-metric-val green">132</div>
+              </div>
+            </div>
+            <div class="dash-orders-card">
+              <div class="dash-orders-header">
+                <span>Pedidos recentes</span>
+                <div class="live-badge">
+                  <div class="live-dot"></div>
+                  <span>Ao vivo</span>
+                </div>
+              </div>
+              <div class="dash-order-row">
+                <span class="dash-order-id">#2049</span>
+                <span class="dash-order-name">Maria Silva — Misto + Café</span>
+                <span class="dash-order-time">12:30</span>
+                <span class="dash-status-badge prep">Preparo</span>
+              </div>
+              <div class="dash-order-row">
+                <span class="dash-order-id">#2048</span>
+                <span class="dash-order-name">João Mendes — Suco + Pão</span>
+                <span class="dash-order-time">12:25</span>
+                <span class="dash-status-badge ready">Pronto</span>
+              </div>
+              <div class="dash-order-row">
+                <span class="dash-order-id">#2047</span>
+                <span class="dash-order-name">Ana Costa — Marmita</span>
+                <span class="dash-order-time">12:20</span>
+                <span class="dash-status-badge ready">Pronto</span>
+              </div>
+              <div class="dash-order-row">
+                <span class="dash-order-id">#2050</span>
+                <span class="dash-order-name">Carlos Lima — Café</span>
+                <span class="dash-order-time">12:35</span>
+                <span class="dash-status-badge waiting">Aguardando</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     BLOCO ALTERNADO
+═══════════════════════════════════════════════ -->
+<section id="bloco-alternado" class="section-pad">
+  <div class="container">
+
+    <!-- Bloco 1: Agendamento -->
+    <div class="row align-items-center g-5 mb-5 pb-5" style="border-bottom:1px solid var(--border-gray);">
+
+      <div class="col-lg-5 order-lg-2 fade-up">
+        <span class="section-eyebrow">Agendamento</span>
+        <h2 class="h2-text">Escolha o horário<br>perfeito para retirar</h2>
+        <div class="divider-orange"></div>
+        <p class="body-md text-muted-cb" style="margin-bottom:24px;">
+          O sistema exibe os horários disponíveis com indicadores de lotação — assim você sabe exatamente quando a fila estará menor e seu pedido estará pronto.
+        </p>
+        <ul class="feature-list">
+          <li>
+            <i class="bi bi-check-circle-fill text-orange check-icon"></i>
+            <span class="body-sm text-muted-cb">Horários com alta demanda indicados em amarelo</span>
+          </li>
+          <li>
+            <i class="bi bi-check-circle-fill text-orange check-icon"></i>
+            <span class="body-sm text-muted-cb">Confirmação instantânea após seleção</span>
+          </li>
+          <li>
+            <i class="bi bi-check-circle-fill text-orange check-icon"></i>
+            <span class="body-sm text-muted-cb">Reagendamento fácil até 10 minutos antes</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-lg-7 order-lg-1 fade-up fade-up-delay-1">
+        <div class="alt-visual">
+          <div class="bg-circle" style="width:300px;height:300px;background:radial-gradient(circle,rgba(255,107,44,0.06) 0%,transparent 70%);top:-60px;left:-60px;"></div>
+          <div class="scheduling-mock">
+            <div class="sched-header">Agendar retirada</div>
+            <div class="sched-sub">Selecione o horário</div>
+            <div class="sched-times-label">Horários disponíveis</div>
+            <div class="sched-times-row">
+              <span class="sched-chip">10:00</span>
+              <span class="sched-chip busy">10:30 lotado</span>
+              <span class="sched-chip sel">12:00</span>
+              <span class="sched-chip busy">12:30 cheio</span>
+              <span class="sched-chip">13:00</span>
+              <span class="sched-chip">14:00</span>
+            </div>
+            <button class="sched-confirm-btn">
+              <i class="bi bi-check-circle-fill"></i>
+              Confirmar 12:00
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bloco 2: QR Code -->
+    <div class="row align-items-center g-5">
+
+      <div class="col-lg-5 fade-up">
+        <span class="section-eyebrow">Retirada</span>
+        <h2 class="h2-text">Um QR Code.<br>Retirada instantânea.</h2>
+        <div class="divider-orange"></div>
+        <p class="body-md text-muted-cb" style="margin-bottom:24px;">
+          Cada pedido gera um código único e rastreável. O funcionário valida na tela do sistema — sem senha, sem papel, sem confusão.
+        </p>
+        <ul class="feature-list">
+          <li>
+            <i class="bi bi-check-circle-fill text-orange check-icon"></i>
+            <span class="body-sm text-muted-cb">QR gerado automaticamente após confirmação do pedido</span>
+          </li>
+          <li>
+            <i class="bi bi-check-circle-fill text-orange check-icon"></i>
+            <span class="body-sm text-muted-cb">Status atualizado em tempo real: em preparo → pronto</span>
+          </li>
+          <li>
+            <i class="bi bi-check-circle-fill text-orange check-icon"></i>
+            <span class="body-sm text-muted-cb">QR expira após retirada, evitando duplicatas</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-lg-7 fade-up fade-up-delay-1">
+        <div class="alt-visual alt-visual--dark">
+          <div class="bg-circle" style="width:400px;height:400px;background:radial-gradient(circle,rgba(255,107,44,0.05) 0%,transparent 70%);top:-100px;right:-100px;"></div>
+          <div class="qr-fullmock">
+            <div class="qr-fm-label">Seu pedido</div>
+            <div class="qr-fm-status">
+              <div class="pf-dot"></div>
+              <span>Pronto para retirada</span>
+            </div>
+            <div class="qr-fm-qr">
+              <div class="qr-grid" id="alt-qr-mini"></div>
+              <i class="bi bi-qr-code text-white qr-fm-code"></i>
+            </div>
+            <div class="qr-fm-id">#CB-20491</div>
+            <div class="qr-fm-order">Misto + Café com Leite</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     COMO FUNCIONA — passo a passo
+═══════════════════════════════════════════════ -->
+<section id="como-funciona" class="section-pad">
+  <div class="container">
+
+    <div class="text-center mb-5 fade-up">
+      <span class="section-eyebrow">Passo a passo</span>
+      <h2 class="h1-text">Como funciona<br>na prática</h2>
+      <p class="body-md text-muted-cb mt-3" style="max-width:400px;margin:0 auto;">
+        Do pedido à retirada em menos de 2 minutos de setup. O resto é automático.
+      </p>
+    </div>
+
+    <div class="row g-4 align-items-start">
+
+      <!-- Steps -->
+      <div class="col-lg-6">
+        <div class="steps-container">
+          <div class="steps-line"></div>
+          <div class="step-item" data-step="0">
+            <div class="step-num-wrap"><div class="step-num active">1</div></div>
+            <div class="step-content">
+              <div class="step-title">Acesse o cardápio</div>
+              <div class="step-desc">Entre no FlashLanche, navegue pelos produtos disponíveis hoje, veja preços e promoções da lanchonete.</div>
+            </div>
+          </div>
+
+          <div class="step-item" data-step="1">
+            <div class="step-num-wrap"><div class="step-num next">2</div></div>
+            <div class="step-content">
+              <div class="step-title">Monte seu pedido</div>
+              <div class="step-desc">Adicione os itens que quiser ao carrinho — lanches, bebidas, marmitas. Escolha a quantidade de cada.</div>
+            </div>
+          </div>
+
+          <div class="step-item" data-step="2">
+            <div class="step-num-wrap"><div class="step-num next">3</div></div>
+            <div class="step-content">
+              <div class="step-title">Agende a retirada</div>
+              <div class="step-desc">Selecione o horário ideal de acordo com seu intervalo. O sistema mostra a lotação em tempo real.</div>
+            </div>
+          </div>
+
+          <div class="step-item" data-step="3">
+            <div class="step-num-wrap"><div class="step-num next">4</div></div>
+            <div class="step-content">
+              <div class="step-title">Receba o QR Code</div>
+              <div class="step-desc">Após confirmar, um QR exclusivo é gerado. Acompanhe o status de preparo diretamente no app.</div>
+            </div>
+          </div>
+
+          <div class="step-item" data-step="4">
+            <div class="step-num-wrap"><div class="step-num next">5</div></div>
+            <div class="step-content">
+              <div class="step-title">Retire sem fila</div>
+              <div class="step-desc">No horário marcado, chegue à lanchonete, mostre o QR — o funcionário valida e você já pega o pedido.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Phone visual -->
+      <div class="col-lg-6 d-none d-lg-block fade-up fade-up-delay-2">
+        <div class="steps-visual-panel">
+          <div class="rotating-phone" id="steps-phone">
+
+            <div class="rp-tabs" id="rp-tabs">
+              <div class="rp-tab active" data-tab="browse">Cardápio</div>
+              <div class="rp-tab" data-tab="schedule">Agendar</div>
+              <div class="rp-tab" data-tab="qr">QR Code</div>
+            </div>
+
+            <!-- Tela: Cardápio -->
+            <div class="rp-screen rp-screen-browse" id="screen-browse">
+              <div class="phone-section-label" style="margin-bottom:8px;">Hoje na lanchonete</div>
+              <div class="rp-item">
+                <div class="rp-item-emoji">🥪</div>
+                <div class="rp-item-info">
+                  <div class="rp-item-name">Misto Quente</div>
+                  <div class="rp-item-price">R$ 8,50</div>
+                </div>
+                <button class="rp-add">+</button>
+              </div>
+              <div class="rp-item">
+                <div class="rp-item-emoji">☕</div>
+                <div class="rp-item-info">
+                  <div class="rp-item-name">Café com Leite</div>
+                  <div class="rp-item-price">R$ 5,00</div>
+                </div>
+                <button class="rp-add">+</button>
+              </div>
+              <div class="rp-item">
+                <div class="rp-item-emoji">🍱</div>
+                <div class="rp-item-info">
+                  <div class="rp-item-name">Marmita do Dia</div>
+                  <div class="rp-item-price">R$ 18,00</div>
+                </div>
+                <button class="rp-add">+</button>
+              </div>
+              <div style="margin-top:16px;">
+                <div style="background:var(--orange);border-radius:12px;padding:12px;text-align:center;color:#fff;font-size:12px;font-weight:700;">
+                  Ver carrinho (2 itens) →
+                </div>
+              </div>
+            </div>
+
+            <!-- Tela: Agendamento -->
+            <div class="rp-screen rp-screen-schedule" id="screen-schedule" style="display:none;">
+              <div class="rp-sched-title">Escolha o horário</div>
+              <div class="rp-time-chips">
+                <span class="rp-chip off">10:00</span>
+                <span class="rp-chip off">11:00</span>
+                <span class="rp-chip on">12:00</span>
+                <span class="rp-chip off">13:00</span>
+                <span class="rp-chip off">14:00</span>
+                <span class="rp-chip off">15:00</span>
+              </div>
+              <div style="background:var(--orange-soft);border-radius:12px;padding:12px;margin-bottom:14px;">
+                <div style="font-size:11px;font-weight:700;color:var(--orange);margin-bottom:2px;">Selecionado: 12:00</div>
+                <div style="font-size:10px;color:var(--text-secondary);">Baixa lotação neste horário ✓</div>
+              </div>
+              <button style="width:100%;padding:12px;border-radius:12px;background:var(--orange);color:#fff;border:none;font-size:12px;font-weight:700;cursor:pointer;">
+                Confirmar horário →
+              </button>
+            </div>
+
+            <!-- Tela: QR Code -->
+            <div class="rp-screen rp-screen-qr" id="screen-qr" style="display:none;">
+              <div class="rp-qr-wrap">
+                <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,0.5);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;">Seu QR Code</div>
+                  <div class="qr-fm-qr">
+                    <i class="bi bi-qr-code text-white qr-fm-code"></i>
+                  </div>
+                </div>
+              <div style="font-family:'Roboto Mono',monospace;font-size:11px;color:var(--text-secondary);margin-bottom:4px;">#CB-20491</div>
+              <div class="rp-qr-status">✓ Pronto para retirar</div>
+              <div style="margin-top:12px;background:rgba(34,160,107,0.08);border-radius:10px;padding:10px;">
+                <div style="font-size:11px;font-weight:700;color:var(--green);">Retirada: 12:00</div>
+                <div style="font-size:10px;color:var(--text-secondary);margin-top:2px;">Misto + Café com Leite</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     CTA FINAL
+═══════════════════════════════════════════════ -->
 <section id="cta-final" class="section-pad">
   <div class="cta-bg-blob" style="width:500px;height:500px;top:-200px;left:-150px;"></div>
   <div class="cta-bg-blob" style="width:400px;height:400px;bottom:-150px;right:-100px;"></div>
-  <div class="container" style="position:relative;z-index:1;">
+
+  <div class="container pos-relative z-1">
     <div class="row align-items-center">
-      <div class="col-lg-7">
-        <span style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.65);display:block;margin-bottom:16px;">Comece agora</span>
+
+      <!-- Texto -->
+      <div class="col-lg-7 fade-up">
+        <span class="section-eyebrow section-eyebrow--white label-upper">Comece agora</span>
         <h2 class="hero-text cta-title">Chega de fila.<br>Seu intervalo merece mais.</h2>
         <p class="body-lg cta-sub">
           Faça seu pedido, agende a retirada e use seu intervalo do jeito que quiser — sem stress, sem espera.
@@ -163,7 +627,7 @@
             <i class="bi bi-bag-check-fill"></i>
             Fazer meu primeiro pedido
           </a>
-          <a href="modulos/gerente/dashboard/dashboard.html" style="display:inline-flex;align-items:center;gap:6px;color:rgba(255,255,255,0.72);font-size:14px;font-weight:600;text-decoration:none;padding:14px 0;">
+          <a href="modulos/gerente/dashboard/dashboard.html" class="btn-link-white">
             Sou gestor de lanchonete <i class="bi bi-arrow-right"></i>
           </a>
         </div>
@@ -175,18 +639,60 @@
           <div class="cta-feat"><i class="bi bi-check2"></i><span>Dashboard completo</span></div>
         </div>
       </div>
+
+      <!-- Card de confirmação -->
+      <div class="col-lg-5 d-none d-lg-flex justify-content-center fade-up fade-up-delay-2">
+        <div class="cta-order-card">
+          <div class="cta-order-card-header">
+            <div class="cta-order-icon"><i class="bi bi-bag-heart-fill"></i></div>
+            <div>
+              <div class="cta-order-title">Pedido confirmado!</div>
+              <div class="cta-order-time">Retirada em 12:00</div>
+            </div>
+          </div>
+
+          <div class="cta-order-items">
+            <div class="cta-order-items-label">Itens do pedido</div>
+            <div class="cta-order-row">
+              <span>🥪 Misto Quente</span>
+              <strong>R$ 8,50</strong>
+            </div>
+            <div class="cta-order-row">
+              <span>☕ Café com Leite</span>
+              <strong>R$ 5,00</strong>
+            </div>
+            <div class="cta-order-total">
+              <span>Total</span>
+              <strong>R$ 13,50</strong>
+            </div>
+          </div>
+
+          <div class="cta-qr-badge">
+            <div class="cta-qr-icon"><i class="bi bi-qr-code"></i></div>
+            <div>
+              <div class="cta-qr-label">QR gerado com sucesso</div>
+              <div class="cta-qr-id">#CB-20491</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- ═════════════════════════════════════════════════════FOOTER═══════════════════════════════════════════════════════════ -->
+
+<!-- ═══════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════ -->
 <footer id="footer" class="section-pad-sm">
   <div class="container">
     <div class="row g-4">
+
       <div class="col-lg-4 col-md-6">
-        <a href="#" class="footer-logo footer-brand" style="display:inline-flex;">
+        <a href="#" class="footer-logo footer-brand">
           <div class="footer-logo-mark"><i class="bi bi-bag-heart-fill"></i></div>
-          <span class="footer-logo-name" style="margin-left:10px;">FlashLanche</span>
+          <span class="footer-logo-name">FlashLanche</span>
         </a>
         <p class="footer-tagline">
           Sistema de pedidos e agendamento para lanchonetes universitárias. Menos fila, mais intervalo.
@@ -198,7 +704,6 @@
         <ul class="footer-links">
           <li><a href="modulos/cliente/cardapio/shop.html">Cardápio</a></li>
           <li><a href="modulos/cliente/pedidos/orders.html">Meus pedidos</a></li>
-          <li><a href="modulos/cliente/rastreio/tracking.html">QR Code</a></li>
         </ul>
       </div>
 
@@ -207,7 +712,7 @@
         <ul class="footer-links">
           <li><a href="modulos/gerente/dashboard/dashboard.html">Painel do gestor</a></li>
           <li><a href="modulos/gerente/pedidos/orders.html">Pedidos em tempo real</a></li>
-          <li><a href="modulos/gerente/dashboard/dashboard.html">Métricas</a></li>
+          <li><a href="modulos/gerente/relatorios/reports.html">Métricas</a></li>
           <li><a href="modulos/gerente/produtos/products.html">Gerenciar cardápio</a></li>
         </ul>
       </div>
@@ -216,16 +721,17 @@
         <div class="footer-col-title">Projeto</div>
         <ul class="footer-links">
           <li><a href="#">Sobre</a></li>
-          <li><a href="#">Como funciona</a></li>
+          <li><a href="#como-funciona">Como funciona</a></li>
           <li><a href="#">Contato</a></li>
         </ul>
       </div>
+
     </div>
 
-    <hr class="footer-divider" />
+    <hr class="footer-divider">
 
     <div class="footer-bottom">
-      <span class="footer-copy">© 2025 FlashLanche. Projeto acadêmico.</span>
+      <span class="footer-copy">© 2026 FlashLanche. Projeto acadêmico.</span>
       <div class="footer-legal">
         <a href="#">Privacidade</a>
         <a href="#">Termos de uso</a>
@@ -234,6 +740,57 @@
   </div>
 </footer>
 
+
+<!-- ═══════════════════════════════════════════════
+     TTS — Leitor de Página (Acessibilidade)
+═══════════════════════════════════════════════ -->
+<div class="tts-widget" role="region" aria-label="Controlos de Leitura de Ecrã">
+  <div class="tts-label" aria-hidden="true">
+    <i class="bi bi-universal-access-circle"></i> Leitor de Página
+  </div>
+  <div class="tts-controls">
+    <button id="tts-play-pause" class="tts-btn" aria-label="Iniciar narração da página">
+      <i class="bi bi-play-circle-fill"></i>
+    </button>
+    <button id="tts-stop" class="tts-btn tts-stop" aria-label="Parar narração" disabled>
+      <i class="bi bi-stop-circle-fill"></i>
+    </button>
+  </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="db/auth.js"></script>
+<script src="index.js"></script>
+<script>
+  // Renderiza a navbar reativa ao estado de autenticação (SDD 5.2)
+  renderizarNavbarAuth('header-actions', {
+    login: 'modulos/auth/login/login.html',
+    cadastro: 'modulos/auth/cadastro/cadastro.html',
+    cardapio: 'modulos/cliente/cardapio/shop.html',
+    dashboard: 'modulos/gerente/dashboard/dashboard.html',
+    home: 'index.html',
+  });
+
+  // Intercepta os botões de ação do meio da página para visitantes (SDD 5.2)
+  document.querySelectorAll('.js-guard-cliente, .js-guard-gerente').forEach(function (link) {
+    link.addEventListener('click', function (evento) {
+      const sessao = obterSessaoAtiva();
+      const precisaAdmin = link.classList.contains('js-guard-gerente');
+
+      // Visitante: ainda não tem conta, manda pro login normalmente.
+      if (!sessao) {
+        evento.preventDefault();
+        window.location.href = 'modulos/auth/login/login.html';
+        return;
+      }
+
+      // Já está logado, mas sem privilégio de gerente: avisa em vez de redirecionar.
+      if (precisaAdmin && sessao.admin !== true) {
+        evento.preventDefault();
+        exibirToastAuth('Acesso negado: essa área é exclusiva para gerentes.', 'erro');
+      }
+    });
+  });
+</script>
 </body>
 </html>

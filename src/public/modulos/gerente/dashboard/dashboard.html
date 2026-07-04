@@ -4,8 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FlashLanche - Gerente Dashboard</title>
-  <link rel="icon" type="image/jpeg" href="../../../assets/favicon.jpg">
-  
+  <link rel="icon" type="image/jpeg" href="../../../assets/favicon.png">
+
+  <!--SECURITY GUARD (SDD 5.3) -->
+  <script src="../../../db/auth.js"></script>
+  <script>
+    protegerRota({
+      exigirAdmin: true,
+      caminhoLogin: '../../auth/login/login.html',
+      caminhoHome: '../../../index.html',
+    });
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -15,15 +25,16 @@
   <link rel="stylesheet" href="../../../styles.css"/>
   <link rel="stylesheet" href="dashboard.css" />
 
-
 </head>
+
 <body>
 
 <div class="manager-layout">
   <!-- ═════════════════════════════════════════════════════SIDEBAR════════════════════════════════════════════════════════════ -->
+
   <aside class="sidebar">
     <a href="#" class="sidebar-logo">
-      <div class="sidebar-logo-mark"><i class="bi bi-bag-heart-fill"></i></div>
+      <div class="sidebar-logo-mark"><i class="bi bi-lightning-charge-fill"></i></div>
       FlashLanche
     </a>
 
@@ -34,12 +45,16 @@
       <li><a href="../horarios/timeslots.html"><i class="bi bi-calendar-event"></i> Horários</a></li>
       <li><a href="../estoque/stock.html"><i class="bi bi-stack"></i> Estoque</a></li>
       <li><a href="../validacaoQR/qr-validation.html"><i class="bi bi-qr-code-scan"></i> QR Codes</a></li>
+      <li><a href="../cupoms/cupom.html"><i class="bi bi-ticket"></i> Cupons</a></li>
+      <li><a href="../relatorios/reports.html"><i class="bi bi-bar-chart"></i> Relatórios</a></li>
     </nav>
 
     <button class="logout-btn" onclick="logout()"><i class="bi bi-box-arrow-right"></i> Sair</button>
   </aside>
 
+
   <!-- ═════════════════════════════════════════════════════CONTENT════════════════════════════════════════════════════════════ -->
+
   <main class="content">
     <div class="top-bar">
       <h1 class="page-title"><i class="bi bi-speedometer2"></i> Dashboard</h1>
@@ -49,32 +64,73 @@
       </div>
     </div>
 
-    <!-- Métricas -->
     <div class="metrics-grid">
       <div class="metric-card">
         <div class="metric-label"><i class="bi bi-receipt"></i> Pedidos Hoje</div>
         <div class="metric-value" id="pedidos-hoje">0</div>
-        <div class="metric-change" id="pedidos-change">+0% vs ontem</div>
+        <div class="metric-change">Total finalizado hoje</div>
       </div>
       <div class="metric-card">
         <div class="metric-label"><i class="bi bi-box-seam"></i> Produtos</div>
         <div class="metric-value" id="total-produtos">0</div>
-        <div class="metric-change">Cadastrados</div>
+        <div class="metric-change">Cadastrados no menu</div>
       </div>
       <div class="metric-card">
         <div class="metric-label"><i class="bi bi-stack"></i> Estoque Total</div>
         <div class="metric-value" id="estoque-total">0</div>
-        <div class="metric-change" id="estoque-change">itens</div>
+        <div class="metric-change">Unidades disponíveis</div>
       </div>
       <div class="metric-card">
-        <div class="metric-label"><i class="bi bi-cash-coin"></i> Receita</div>
-        <div class="metric-value" id="receita-total">R$ 0</div>
-        <div class="metric-change">Hoje</div>
+        <div class="metric-label"><i class="bi bi-cash-coin"></i> Receita do Dia</div>
+        <div class="metric-value metric-value-highlight" id="receita-total">R$ 0,00</div>
+        <div class="metric-change">Faturamento bruto hoje</div>
       </div>
     </div>
 
-    <!-- ═════════════════════════════════════════════════════PEDIDOS RECENTES════════════════════════════════════════════════════════════ -->
-    <h2 class="section-title"><i class="bi bi-receipt"></i> Pedidos Mais Recentes</h2>
+    <h2 class="section-title section-title-highlight"><i class="bi bi-alarm"></i> Próximas Retiradas (Fila de Preparo)</h2>
+    <div class="recent-orders recent-orders-highlight">
+      <table class="orders-table">
+        <thead>
+          <tr>
+            <th>Horário</th>
+            <th>Pedido</th>
+            <th>Cliente</th>
+            <th>Itens Resumo</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="upcoming-orders-body">
+          <tr>
+            <td colspan="5" class="table-message">Carregando...</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="section-title"><i class="bi bi-clock-history"></i> Histórico Geral (Últimos Pedidos)</h2>
+
+    <div class="d-flex gap-3 mb-3 align-items-center flex-wrap">
+
+      <div class="position-relative search-box">
+        <span class="position-absolute top-50 translate-middle-y start-0 ps-3 text-secondary">
+          <i class="bi bi-search"></i>
+        </span>
+        <input type="text" id="search-input" class="form-control ps-5 bordered-control" placeholder="Pesquisar por Nº do pedido ou cliente...">
+      </div>
+
+      <div class="filter-box">
+        <select id="status-filter" class="form-select bordered-control select-bordered">
+          <option value="todos">Todos os Status</option>
+          <option value="pendente">Pendente</option>
+          <option value="confirmado">Confirmado</option>
+          <option value="preparando">Preparando</option>
+          <option value="pronto">Pronto</option>
+          <option value="retirado">Retirado</option>
+          <option value="cancelado">Cancelado</option>
+        </select>
+      </div>
+
+</div>
     <div class="recent-orders">
       <table class="orders-table">
         <thead>
@@ -82,34 +138,13 @@
             <th>Pedido</th>
             <th>Cliente</th>
             <th>Total</th>
-            <th>Horário</th>
+            <th>Horário Retirada</th>
             <th>Status</th>
-            <th>Ações</th>
           </tr>
         </thead>
         <tbody id="recent-orders-body">
           <tr>
-            <td colspan="6" style="text-align: center; color: var(--text-secondary);">Carregando...</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- ═════════════════════════════════════════════════════ATIVIDADES═══════════════════════════════════════════ -->
-    <h2 class="section-title"><i class="bi bi-activity"></i> Status de Preparação</h2>
-    <div class="recent-orders">
-      <table class="orders-table">
-        <thead>
-          <tr>
-            <th>Pedido</th>
-            <th>Itens</th>
-            <th>Status</th>
-            <th>Ação</th>
-          </tr>
-        </thead>
-        <tbody id="status-body">
-          <tr>
-            <td colspan="4" style="text-align: center; color: var(--text-secondary);">Carregando...</td>
+            <td colspan="5" class="table-message">Carregando...</td>
           </tr>
         </tbody>
       </table>
@@ -117,8 +152,23 @@
   </main>
 </div>
 
-<script src="../../../db/db.js"></script>
+<div class="tts-widget-gestor" role="region" aria-label="Controlos de Leitura de Ecrã">
+  <div class="tts-label" aria-hidden="true">
+    <i class="bi bi-universal-access-circle"></i> Leitor de Página
+  </div>
+  
+  <div class="tts-controls">
+    <button id="tts-play-pause" class="tts-btn" aria-label="Iniciar narração da página" onclick="toggleLeitura()">
+      <i class="bi bi-play-circle-fill"></i>
+    </button>
+    <button id="tts-stop" class="tts-btn tts-stop" aria-label="Parar narração" onclick="pararLeitura()" disabled>
+      <i class="bi bi-stop-circle-fill"></i>
+    </button>
+  </div>
+</div>
+
 <script src="dashboard.js"></script>
+
 
 </body>
 </html>
