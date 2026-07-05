@@ -6,7 +6,7 @@
   <title>FlashLanche - Carrinho</title>
   <link rel="icon" type="image/jpeg" href="../../../assets/favicon.png" />
 
-  <!-- SECURITY GUARD-->
+  <!-- SECURITY GUARD: exige apenas estar logado -->
   <script src="../../../db/auth.js"></script>
   <script>
     protegerRota({ caminhoLogin: '../../auth/login/login.html', caminhoHome: '../../../index.html' });
@@ -59,7 +59,7 @@
 
     <div class="cart-layout">
 
-      <!-- Lista de itens-->
+      <!-- Lista de itens (preenchida via JS) -->
       <div class="cart-items" id="cart-items-container" role="list" aria-label="Itens no carrinho">
         <div class="cart-empty">
           <p class="cart-empty-icon"><i class="bi bi-inbox" aria-hidden="true"></i></p>
@@ -133,7 +133,11 @@
       <i class="bi bi-stop-circle-fill"></i>
     </button>
   </div>
+    <button type="button" class="tts-close-btn" aria-label="Ocultar leitor de página" title="Ocultar leitor de página">
+      <i class="bi bi-x-lg" aria-hidden="true"></i>
+    </button>
 </div>
+<script>inicializarTTSToggle('.tts-widget');</script>
 
 <script src="../../../db/db.js"></script>
 <script src="cart.js"></script>

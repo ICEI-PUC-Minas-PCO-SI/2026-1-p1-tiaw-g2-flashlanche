@@ -1,9 +1,11 @@
+// Variável para guardar temporariamente qual ID será apagado
 let cupomIdParaExcluir = null;
 
 const STORAGE_KEYS = {
   CUPONS: 'cupons',
 };
 
+// Requisito: Evento na carga de objetos
 document.addEventListener('DOMContentLoaded', () => {
   renderizarTabela();
 });
@@ -54,6 +56,9 @@ function salvarCupons(cupons) {
   salvarNoStorage(STORAGE_KEYS.CUPONS, cupons);
 }
 
+/**
+ * Converte yyyy-mm-dd (formato do input type="date") para dd/mm/yyyy.
+ */
 function formatarDataBr(dataIso) {
   if (!dataIso) {
     return '--';
@@ -113,14 +118,14 @@ function criarLinhaCupom(cupom) {
     </td>
   `;
 
-  /*═════════════════════════════════════════════════════TEXTOS DO CUPOM═════════════════════════════════════════*/
+  /*═════════════════════════════════════════════════════TEXTOS DO CUPOM (textContent evita injeção de HTML)═════════════════════════════════════════*/
 
   tr.querySelector('.codigo-cupom').textContent = cupom.codigo;
   tr.querySelector('.cupom-desconto').textContent = `${cupom.desconto}%`;
   tr.querySelector('.cupom-validade').textContent = formatarDataBr(cupom.validade);
   tr.querySelector('.badge').textContent = cupom.status;
 
-  /*═════════════════════════════════════════════════════EVENTOS═════════════════════════════════════════*/
+  /*═════════════════════════════════════════════════════EVENTOS (listeners em vez de onclick inline)═════════════════════════════════════════*/
 
   tr.querySelector('.btn-action').addEventListener('click', () => abrirModalCupom(cupom.id));
   tr.querySelector('.btn-action-danger').addEventListener('click', () => abrirModalExcluir(cupom.id));
@@ -134,6 +139,10 @@ function criarLinhaCupom(cupom) {
  * ═════════════════════════════════════════════════════════
  */
 
+/**
+ * Centraliza a busca dos campos do formulário, usada tanto para
+ * preencher (edição) quanto para ler (salvar).
+ */
 function obterCamposFormulario() {
   return {
     id: document.getElementById('cupom-id'),
@@ -148,9 +157,10 @@ function abrirModalCupom(id = null) {
   const form = document.getElementById('form-cupom');
   const campos = obterCamposFormulario();
 
-  form.reset(); 
+  form.reset(); // Limpa o formulário
 
   if (id) {
+    // UPDATE: o usuário clicou no botão de editar, então preenchemos os dados
     const cupom = obterCupons().find((c) => c.id === id);
 
     if (cupom) {
@@ -163,6 +173,7 @@ function abrirModalCupom(id = null) {
       document.getElementById('modal-titulo').innerText = 'Editar Cupom';
     }
   } else {
+    // CREATE: é um cupom novo, ID fica vazio
     campos.id.value = '';
     document.getElementById('modal-titulo').innerText = 'Novo Cupom';
   }
@@ -170,8 +181,9 @@ function abrirModalCupom(id = null) {
   document.getElementById('modal-cupom').classList.add('show');
 }
 
+// Requisito: Evento de submissão de formulário (onsubmit)
 function salvarCupom(event) {
-  event.preventDefault(); 
+  event.preventDefault(); // Impede a página de recarregar
 
   const campos = obterCamposFormulario();
 
@@ -184,14 +196,16 @@ function salvarCupom(event) {
   const cupons = obterCupons();
 
   if (id) {
+    // ALTERAÇÃO (UPDATE)
     const index = cupons.findIndex((c) => c.id === id);
 
     if (index !== -1) {
       cupons[index] = { id, codigo, desconto, validade, status };
     }
   } else {
+    // INCLUSÃO (CREATE)
     cupons.push({
-      id: 'CUP-' + Date.now(), 
+      id: 'CUP-' + Date.now(), // Gera um ID único baseado na data
       codigo,
       desconto,
       validade,
@@ -203,6 +217,7 @@ function salvarCupom(event) {
 
   fecharModal('modal-cupom');
 
+  // Atualização dinâmica sem recarregar (F5)
   renderizarTabela();
 }
 
@@ -228,6 +243,7 @@ function confirmarExclusao() {
   fecharModal('modal-excluir');
   cupomIdParaExcluir = null;
 
+  // Atualiza a tela instantaneamente
   renderizarTabela();
 }
 
@@ -245,22 +261,32 @@ function fecharModal(idModal) {
 let ttsUtterance = null;
 let isPaused = false;
 
+/**
+ * Prepara o texto da página para ser lido, focando no conteúdo principal
+ */
 function prepararTextoLeitura() {
-
+  // Dá preferência ao conteúdo dentro da tag <main> para não ler menus repetitivos,
+  // caso a tag não exista, lê todo o <body>.
   const mainContent = document.querySelector('main') || document.body;
 
+  // Extrai apenas o texto limpo sem as tags de código HTML
   let textoParaLer = mainContent.innerText || mainContent.textContent;
 
+  // Limpa quebras de linha em excesso para não gerar pausas longas na voz
   textoParaLer = textoParaLer.replace(/\n+/g, '. ').trim();
 
   return textoParaLer;
 }
 
+/**
+ * Controla os Cenários 1, 2 e 3 (Iniciar, Pausar e Continuar)
+ */
 function toggleLeitura() {
   const btnPlayPause = document.getElementById('tts-play-pause');
   const btnStop = document.getElementById('tts-stop');
   const iconePlayPause = btnPlayPause.querySelector('i');
 
+  // Cenário 3: Continuar (A leitura estava pausada)
   if (isPaused) {
     window.speechSynthesis.resume();
     isPaused = false;
@@ -269,6 +295,7 @@ function toggleLeitura() {
     return;
   }
 
+  // Cenário 2: Pausar (A leitura está em andamento)
   if (window.speechSynthesis.speaking) {
     window.speechSynthesis.pause();
     isPaused = true;
@@ -277,6 +304,7 @@ function toggleLeitura() {
     return;
   }
 
+  // Cenário 1: Iniciar (A leitura do zero)
   const texto = prepararTextoLeitura();
   if (!texto) {
     alert("Não foi possível encontrar conteúdo legível na página.");

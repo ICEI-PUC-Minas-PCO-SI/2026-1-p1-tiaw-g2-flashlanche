@@ -286,6 +286,14 @@ function renderizarInsightMarketBasket(regra) {
    ANÁLISE DE PORTFÓLIO — CURVA ABC (PRINCÍPIO DE PARETO)
 ════════════════════════════════════════════════════════════ */
 
+/**
+ * - Converte o dicionário de ranking em um array de objetos.
+ * - Ordena de forma decrescente por receita.
+ * - Calcula a base total de 100% do faturamento de produtos.
+ *
+ * opera estritamente em memória volátil — não toca no localStorage
+ * nem altera os objetos originais de rankingProdutos.
+ */
 function prepararDadosParaCurvaABC(rankingProdutos) {
   const produtosOrdenados = Object.entries(rankingProdutos)
     .map(([nome, dados]) => ({ nome, receita: dados.receitaGerada }))
@@ -296,6 +304,16 @@ function prepararDadosParaCurvaABC(rankingProdutos) {
   return { produtosOrdenados, receitaTotalProdutos };
 }
 
+/**
+ * Itera sobre a lista ordenada, acumulando a receita e calculando o
+ * percentual de corte acumulado a cada produto, aplicando os limites
+ * estritos de 80% e 95% (CA01).
+ *
+ * Regra de corte:
+ *   percentual acumulado <= 0.80        -> Classe A
+ *   0.80 <  percentual acumulado <= 0.95 -> Classe B
+ *   percentual acumulado >  0.95        -> Classe C
+ */
 function aplicarCorteParetoABC(produtosOrdenados, receitaTotalProdutos) {
   let acumulador = 0;
 
@@ -323,6 +341,10 @@ function aplicarCorteParetoABC(produtosOrdenados, receitaTotalProdutos) {
   });
 }
 
+/**
+ * Compilação dos grupos:
+ * Agrupa os produtos já classificados em três listas (A, B, C).
+ */
 function agruparPorClasseABC(produtosClassificados) {
   const grupos = { classeA: [], classeB: [], classeC: [] };
 
@@ -335,6 +357,11 @@ function agruparPorClasseABC(produtosClassificados) {
   return grupos;
 }
 
+/**
+ * Tratamento de baixo volume: se não houver faturamento de
+ * produtos no período, sinaliza "semDados" para a interface renderizar
+ * o estado de espera, evitando divisão por zero.
+ */
 function classificarProdutosABC(rankingProdutos) {
   const { produtosOrdenados, receitaTotalProdutos } = prepararDadosParaCurvaABC(rankingProdutos);
 
@@ -348,6 +375,10 @@ function classificarProdutosABC(rankingProdutos) {
   return { semDados: false, classeA, classeB, classeC, receitaTotalProdutos };
 }
 
+/**
+ * Formata uma lista de produtos para texto, evitando estourar a
+ * interface quando a Classe A possuir muitos itens.
+ */
 function formatarListaProdutosABC(produtos, limite = 3) {
   const nomes = produtos.map((p) => p.nome);
   if (nomes.length <= limite) return nomes.join(', ');
@@ -357,6 +388,9 @@ function formatarListaProdutosABC(produtos, limite = 3) {
   return `${visiveis.join(', ')} e mais ${restantes} item${restantes > 1 ? 's' : ''}`;
 }
 
+/**
+ * Renderiza o bloco de diagnóstico comercial 
+ */
 function renderizarCurvaABC(resultado) {
   const container = document.getElementById('abc-curve-container');
   if (!container) return;
@@ -419,6 +453,11 @@ function renderizarCurvaABC(resultado) {
   `;
 }
 
+/**
+ * Ponto de entrada da feature: recebe o ranking já consolidado por
+ * agruparDados() (mesma fonte usada na tabela de ranking) e conduz o
+ * dado pelo pipeline de classificação + renderização.
+ */
 function executarAnaliseCurvaABC(rankingProdutos) {
   const resultado = classificarProdutosABC(rankingProdutos);
   renderizarCurvaABC(resultado);

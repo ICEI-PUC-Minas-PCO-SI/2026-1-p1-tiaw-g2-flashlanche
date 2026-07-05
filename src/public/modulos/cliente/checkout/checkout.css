@@ -13,6 +13,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .nav-logo {
@@ -55,7 +57,12 @@
 
 @media (max-width: 768px) {
   .checkout-layout   { grid-template-columns: 1fr; }
-  .horario-grid      { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .checkout-container { padding: 24px 0; }
+  .checkout-title      { font-size: 24px; margin-bottom: 20px; }
+  .horario-grid        { grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); }
 }
 
 /* ════════════════════════════════════════════════════════════

@@ -322,3 +322,31 @@
 .cell-client-name   { font-weight: 600; }
 .cell-client-meta   { font-size: 11px; color: var(--text-secondary); }
 .cell-empty          { text-align: center; color: var(--text-secondary); }
+/* ════════════════════════════════════════════════════════════
+   RESPONSIVO
+════════════════════════════════════════════════════════════ */
+
+@media (max-width: 992px) {
+  .manager-layout { grid-template-columns: 1fr; }
+
+  .sidebar {
+    position: static;
+    flex-direction: row;
+    height: auto;
+    padding: 12px 16px;
+  }
+
+  .sidebar-nav { display: flex; flex-wrap: wrap; }
+  .sidebar-nav a { padding: 8px 12px; font-size: 13px; }
+
+  .content { padding: 20px 16px; }
+}
+
+@media (max-width: 576px) {
+  .page-title { font-size: 22px; }
+  .scanner-box { padding: 20px; }
+  .scanner-input-row { flex-direction: column; }
+
+  .table-container { overflow-x: auto; }
+  .qr-table { min-width: 640px; }
+}

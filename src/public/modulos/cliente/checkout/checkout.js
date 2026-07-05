@@ -143,6 +143,7 @@ function renderizarInfoConta() {
   const usuario    = obterUsuarioAtual();
 
   if (!usuario) {
+    // Não deveria acontecer (a página exige login), mas evita quebrar a renderização.
     container.innerHTML = '<p class="account-info-hint">Não foi possível carregar os dados da conta.</p>';
     return;
   }

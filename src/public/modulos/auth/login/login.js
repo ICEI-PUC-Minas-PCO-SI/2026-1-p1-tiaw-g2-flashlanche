@@ -4,6 +4,7 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
+  // Se já existe uma sessão ativa, não faz sentido ficar na tela de login.
   const sessaoExistente = obterSessaoAtiva();
   if (sessaoExistente) {
     window.location.href = '../../../index.html';
@@ -43,6 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     exibirToastAuth(`Bem-vindo, ${resultado.sessao.username}!`, 'sucesso');
 
+    // Pequeno delay para o toast ser percebido antes do redirect.
     setTimeout(function () {
       window.location.href = '../../../index.html';
     }, 500);

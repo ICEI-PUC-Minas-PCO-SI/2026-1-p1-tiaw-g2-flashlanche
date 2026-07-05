@@ -6,7 +6,10 @@
   <title>FlashLanche - Gerente Dashboard</title>
   <link rel="icon" type="image/jpeg" href="../../../assets/favicon.png">
 
-  <!--SECURITY GUARD (SDD 5.3) -->
+  <!-- ═══ SECURITY GUARD ═══
+       Roda antes de qualquer CSS/render para evitar FOUC de uma tela
+       restrita. Redireciona visitantes para o login e clientes comuns
+       para a Home caso tentem acessar via URL direta. -->
   <script src="../../../db/auth.js"></script>
   <script>
     protegerRota({
@@ -57,7 +60,12 @@
 
   <main class="content">
     <div class="top-bar">
-      <h1 class="page-title"><i class="bi bi-speedometer2"></i> Dashboard</h1>
+      <div class="top-bar-left">
+        <button type="button" id="sidebar-toggle-btn" class="sidebar-toggle-btn" aria-label="Ocultar menu lateral" title="Ocultar menu lateral">
+          <i class="bi bi-layout-sidebar-inset" aria-hidden="true"></i>
+        </button>
+        <h1 class="page-title"><i class="bi bi-speedometer2"></i> Dashboard</h1>
+      </div>
       <div class="user-badge">
         <div class="user-badge-dot"></div>
         <span>Gerente Online</span>
@@ -165,7 +173,13 @@
       <i class="bi bi-stop-circle-fill"></i>
     </button>
   </div>
+    <button type="button" class="tts-close-btn" aria-label="Ocultar leitor de página" title="Ocultar leitor de página">
+      <i class="bi bi-x-lg" aria-hidden="true"></i>
+    </button>
 </div>
+<div class="sidebar-backdrop" id="sidebar-backdrop" aria-hidden="true"></div>
+<script>inicializarTTSToggle('.tts-widget-gestor');</script>
+<script>inicializarSidebarToggle();</script>
 
 <script src="dashboard.js"></script>
 

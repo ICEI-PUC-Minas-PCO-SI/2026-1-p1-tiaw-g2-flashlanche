@@ -13,6 +13,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .nav-logo {
@@ -71,6 +73,27 @@
 
 @media (max-width: 768px) {
   .cart-layout { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .cart-items,
+  .cart-summary { padding: 16px; }
+
+  .cart-item {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .cart-item-img { width: 56px; height: 56px; }
+
+  .cart-item-info {
+    flex-basis: calc(100% - 66px);
+  }
+
+  .cart-item-controls {
+    flex-basis: 100%;
+    justify-content: space-between;
+  }
 }
 
 /* ════════════════════════════════════════════════════════════

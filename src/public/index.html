@@ -756,12 +756,19 @@
       <i class="bi bi-stop-circle-fill"></i>
     </button>
   </div>
+    <button type="button" class="tts-close-btn" aria-label="Ocultar leitor de página" title="Ocultar leitor de página">
+      <i class="bi bi-x-lg" aria-hidden="true"></i>
+    </button>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="db/auth.js"></script>
 <script src="index.js"></script>
 <script>
+  // Ativa o botão de ocultar/mostrar o leitor de página (precisa rodar
+  // depois do db/auth.js, que é quem define inicializarTTSToggle).
+  inicializarTTSToggle('.tts-widget');
+
   // Renderiza a navbar reativa ao estado de autenticação (SDD 5.2)
   renderizarNavbarAuth('header-actions', {
     login: 'modulos/auth/login/login.html',

@@ -128,6 +128,92 @@
   text-decoration: none;
 }
 
-.auth-footer a:hover {
-  text-decoration: underline;
+/* ═══════════════════════════════════════════════════════════
+   NAVBAR
+═══════════════════════════════════════════════════════════ */
+
+.top-nav {
+  background: var(--white);
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-gray);
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.nav-logo-mark {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--orange);
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(255, 107, 44, 0.32);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 1px solid var(--border-gray);
+  border-radius: 12px;
+  background: transparent;
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.nav-btn:hover {
+  background: var(--canvas);
+  color: var(--text-primary);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESPONSIVO
+═══════════════════════════════════════════════════════════ */
+
+@media (max-width: 576px) {
+  .auth-container {
+    padding: 32px 12px;
+  }
+
+  .auth-card {
+    padding: 28px 20px;
+  }
+
+  .auth-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 22px;
+  }
+
+  .nav-btn span,
+  .nav-btn {
+    font-size: 13px;
+    padding: 7px 12px;
+  }
 }

@@ -36,6 +36,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .nav-logo {
@@ -305,4 +307,29 @@
   color: var(--text-secondary);
   font-size: 18px;
   padding: 40px 0;
+}
+/* ════════════════════════════════════════════════════════════
+   RESPONSIVO
+════════════════════════════════════════════════════════════ */
+
+@media (max-width: 576px) {
+  .shop-container { padding: 24px 0; }
+  .shop-header    { margin-bottom: 24px; }
+  .shop-title     { font-size: 26px; }
+
+  .sort-container { justify-content: stretch; }
+  #sort-select    { width: 100%; }
+
+  .product-grid   { grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  .cart-badge {
+    right: 16px;
+    bottom: 16px;
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 400px) {
+  .product-grid { grid-template-columns: 1fr; }
 }

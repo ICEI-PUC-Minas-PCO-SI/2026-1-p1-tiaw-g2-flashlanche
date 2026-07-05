@@ -13,6 +13,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .nav-logo {
@@ -324,4 +326,12 @@
   color: var(--text-secondary);
   font-size: 13px;
   margin-bottom: 0;
+}
+/* ════════════════════════════════════════════════════════════
+   RESPONSIVO
+════════════════════════════════════════════════════════════ */
+
+@media (max-width: 480px) {
+  .order-card   { padding: 18px; }
+  .order-header { flex-wrap: wrap; gap: 8px; }
 }

@@ -9,6 +9,11 @@ const STORAGE_KEYS = {
   PRODUTOS: 'produtos',
 };
 
+/**
+ * Lê e faz parse de um valor JSON do localStorage.
+ * Retorna `padrao` se a chave não existir ou o JSON estiver corrompido,
+ * em vez de deixar o erro quebrar a página de estoque inteira.
+ */
 function obterDoStorage(chave, padrao) {
   const dados = localStorage.getItem(chave);
 
@@ -33,6 +38,7 @@ function salvarNoStorage(chave, valor) {
 }
 
 function obterEstoque() {
+  // Lemos direto da chave 'produtos' que alimenta todo o sistema
   const produtos = obterDoStorage(STORAGE_KEYS.PRODUTOS, []);
 
   // Garante que todo produto tenha a propriedade de quantidade e status
@@ -138,6 +144,9 @@ function criarLinhaVazia() {
   return tr;
 }
 
+/**
+ * Mapeia a categoria de um produto para a classe de badge correspondente.
+ */
 function obterClasseCategoria(categoria) {
   const classes = {
     lanches: 'badge-cat-lanches',
@@ -148,6 +157,11 @@ function obterClasseCategoria(categoria) {
   return classes[categoria] || 'badge-cat-outros';
 }
 
+/**
+ * Deriva a classe visual de quantidade a partir do status já calculado
+ * por calcularStatus(), em vez de repetir os mesmos limiares (<=0, <=4)
+ * com nomes de classe diferentes.
+ */
 function obterClasseQuantidade(status) {
   const classes = {
     esgotado: 'qty-zero',
@@ -201,7 +215,7 @@ function criarLinhaTabela(item) {
     </td>
   `;
 
-  /*═════════════════════════════════════════════════════TEXTOS DO PRODUTO═════════════════════════════════════════*/
+  /*═════════════════════════════════════════════════════TEXTOS DO PRODUTO (textContent evita injeção de HTML)═════════════════════════════════════════*/
 
   tr.querySelector('.produto-emoji').textContent = item.imagem || '🍽️';
   tr.querySelector('.produto-nome').textContent = item.nome;
@@ -210,7 +224,7 @@ function criarLinhaTabela(item) {
   tr.querySelector('.qty-display').textContent = item.quantidade;
   tr.querySelector('.badge-status span').textContent = statusInfo.texto;
 
-  /*═════════════════════════════════════════════════════EVENTOS═════════════════════════════════════════*/
+  /*═════════════════════════════════════════════════════EVENTOS (listeners em vez de onclick inline)═════════════════════════════════════════*/
 
   const [btnDiminuir, btnAumentar] = tr.querySelectorAll('.qty-btn-sm');
   btnDiminuir.addEventListener('click', () => alterarQuantidadeRapido(item.id, -1));
@@ -387,6 +401,7 @@ function abrirModalExcluir(id) {
 function confirmarExclusao() {
   const id = document.getElementById('excluir-produto-id').value;
 
+  // Apenas zera a quantidade, não exclui o produto do cardápio!
   atualizarProdutoEstoque(id, (p) => {
     p.quantidade = 0;
   });
@@ -440,6 +455,9 @@ window.onload = inicializarDados;
 let ttsUtterance = null;
 let isPaused = false;
 
+/**
+ * Prepara o texto da página para ser lido, focando no conteúdo principal
+ */
 function prepararTextoLeitura() {
   // Dá preferência ao conteúdo dentro da tag <main> para não ler menus repetitivos,
   // caso a tag não exista, lê todo o <body>.
@@ -535,6 +553,7 @@ function resetarUI() {
   isPaused = false;
 }
 
+// Prevenção de Bug: Garante que a síntese de voz para caso o utilizador mude de página ou feche o separador
 window.addEventListener('beforeunload', () => {
   window.speechSynthesis.cancel();
 });

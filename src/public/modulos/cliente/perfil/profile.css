@@ -464,4 +464,5 @@
   .section-header { flex-direction: column; align-items: flex-start; }
   .favorite-footer { flex-direction: column; align-items: stretch; }
   .quantity-control { justify-content: center; }
+  .account-card { padding: 20px; }
 }

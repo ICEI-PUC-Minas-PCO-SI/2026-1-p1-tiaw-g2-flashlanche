@@ -1,3 +1,7 @@
+/*═════════════════════════════════════════════════════
+  AUTH.JS
+═════════════════════════════════════════════════════*/
+
 const AUTH_STORAGE_KEYS = {
   USERS: 'users',
   SESSION: 'activeSession',
@@ -59,6 +63,7 @@ function inicializarUsuariosMock() {
   authSalvarNoStorage(AUTH_STORAGE_KEYS.USERS, usuariosMock);
 }
 
+// Roda imediatamente ao carregar o script, em qualquer página.
 inicializarUsuariosMock();
 
 /*═════════════════════════════════════════════════════
@@ -167,6 +172,7 @@ function cadastrarUsuario(username, password, email, telefone) {
 
   return { sucesso: true };
 }
+
 
 function atualizarDadosConta(email, telefone) {
   const sessao = obterSessaoAtiva();
@@ -400,6 +406,97 @@ function renderizarNavbarAuth(elementoId, caminhos) {
 }
 
 /*═════════════════════════════════════════════════════
+  OCULTAR/MOSTRAR A SIDEBAR (PAINEL DO GERENTE)
+═════════════════════════════════════════════════════*/
+
+const SIDEBAR_OCULTA_KEY = 'sidebarGerenteOculta';
+
+function inicializarSidebarToggle() {
+  const layout = document.querySelector('.manager-layout');
+  const botao = document.getElementById('sidebar-toggle-btn');
+  const backdrop = document.getElementById('sidebar-backdrop');
+
+  if (!layout || !botao) {
+    return;
+  }
+
+  function aplicarEstado(oculta) {
+    layout.classList.toggle('sidebar-collapsed', oculta);
+    const rotulo = oculta ? 'Mostrar menu lateral' : 'Ocultar menu lateral';
+    botao.setAttribute('aria-label', rotulo);
+    botao.title = rotulo;
+  }
+
+  aplicarEstado(localStorage.getItem(SIDEBAR_OCULTA_KEY) === 'true');
+
+  botao.addEventListener('click', function () {
+    const ocultaAgora = !layout.classList.contains('sidebar-collapsed');
+    localStorage.setItem(SIDEBAR_OCULTA_KEY, String(ocultaAgora));
+    aplicarEstado(ocultaAgora);
+  });
+
+  // No mobile/tablet a sidebar vira um drawer sobre um fundo escurecido;
+  // clicar nesse fundo fecha o drawer, como em qualquer menu lateral.
+  if (backdrop) {
+    backdrop.addEventListener('click', function () {
+      localStorage.setItem(SIDEBAR_OCULTA_KEY, 'true');
+      aplicarEstado(true);
+    });
+  }
+}
+
+/*═════════════════════════════════════════════════════
+  OCULTAR/MOSTRAR O WIDGET FLUTUANTE DE TTS
+═════════════════════════════════════════════════════*/
+
+const TTS_OCULTO_KEY = 'ttsWidgetOculto';
+
+function inicializarTTSToggle(seletorWidget) {
+  const widget = document.querySelector(seletorWidget);
+  if (!widget) {
+    return;
+  }
+
+  const posicionadoADireita = widget.classList.contains('tts-widget-gestor');
+
+  let botaoRestaurar = document.getElementById('tts-restore-btn');
+  if (!botaoRestaurar) {
+    botaoRestaurar = document.createElement('button');
+    botaoRestaurar.id = 'tts-restore-btn';
+    botaoRestaurar.type = 'button';
+    botaoRestaurar.className = 'tts-restore-btn' + (posicionadoADireita ? ' tts-restore-btn-right' : '');
+    botaoRestaurar.setAttribute('aria-label', 'Mostrar leitor de página');
+    botaoRestaurar.innerHTML = '<i class="bi bi-universal-access-circle" aria-hidden="true"></i>';
+    document.body.appendChild(botaoRestaurar);
+  }
+
+  function aplicarEstado(oculto) {
+    widget.style.display = oculto ? 'none' : 'flex';
+    botaoRestaurar.style.display = oculto ? 'flex' : 'none';
+  }
+
+  aplicarEstado(localStorage.getItem(TTS_OCULTO_KEY) === 'true');
+
+  botaoRestaurar.addEventListener('click', function () {
+    localStorage.setItem(TTS_OCULTO_KEY, 'false');
+    aplicarEstado(false);
+  });
+
+  const botaoFechar = widget.querySelector('.tts-close-btn');
+  if (botaoFechar) {
+    botaoFechar.addEventListener('click', function () {
+      localStorage.setItem(TTS_OCULTO_KEY, 'true');
+      aplicarEstado(true);
+
+      // Evita deixar uma narração tocando "escondida" depois de fechar o widget.
+      if (window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+      }
+    });
+  }
+}
+
+/*═════════════════════════════════════════════════════
   TOAST DE FEEDBACK
 ═════════════════════════════════════════════════════*/
 
@@ -439,6 +536,7 @@ function exibirToastAuth(mensagem, tipo) {
       toastEl.remove();
     });
   } else {
+    // Fallback caso o bundle do Bootstrap ainda não tenha sido carregado
     setTimeout(function () {
       toastEl.remove();
     }, 3000);

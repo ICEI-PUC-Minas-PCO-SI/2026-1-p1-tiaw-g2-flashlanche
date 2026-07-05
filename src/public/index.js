@@ -1,10 +1,11 @@
 /* ═══════════════════════════════════════════════════
-   QR CODE
+   QR CODE — geração determinística de padrão pixelado
 ═══════════════════════════════════════════════════ */
 function generateQRPattern(gridId, cols, darkColor = '#20242b') {
   const grid = document.getElementById(gridId);
   if (!grid) return;
 
+  // LCG com seed baseada no id para resultado determinístico
   let s = gridId.split('').reduce((acc, ch) => acc + ch.charCodeAt(0), 0);
   const rand = () => {
     s = (s * 1664525 + 1013904223) & 0xffffffff;
@@ -18,6 +19,7 @@ function generateQRPattern(gridId, cols, darkColor = '#20242b') {
     const row = Math.floor(i / cols);
     const col = i % cols;
 
+    // Padrão finder nos três cantos superiores
     const inFinder = (row < 3 && col < 3)
                   || (row < 3 && col >= cols - 3)
                   || (row >= cols - 3 && col < 3);
@@ -59,6 +61,7 @@ const fadeObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.fade-up, .step-item').forEach(el => fadeObserver.observe(el));
 
+// Dispara para elementos já visíveis no carregamento inicial
 document.querySelectorAll('.fade-up').forEach(el => {
   if (el.getBoundingClientRect().top < window.innerHeight) {
     el.classList.add('visible');
@@ -121,6 +124,7 @@ setInterval(() => {
 
 /* ═══════════════════════════════════════════════════
    TTS — Leitor de Tela (Text-To-Speech)
+   Encapsulado para não poluir o escopo global
 ═══════════════════════════════════════════════════ */
 (function initTTS() {
   const btnPlayPause = document.getElementById('tts-play-pause');

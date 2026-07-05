@@ -6,7 +6,7 @@
   <title>FlashLanche - Validação de QR Codes</title>
   <link rel="icon" type="image/jpeg" href="../../../assets/favicon.png" />
 
-  <!-- SECURITY GUARD-->
+  <!-- SECURITY GUARD: exige login + privilégio de gerente -->
   <script src="../../../db/auth.js"></script>
   <script>
     protegerRota({ exigirAdmin: true, caminhoLogin: '../../auth/login/login.html', caminhoHome: '../../../index.html' });
@@ -58,9 +58,14 @@
   <main class="content">
 
     <div class="top-bar">
-      <h1 class="page-title">
-        <i class="bi bi-qr-code-scan" aria-hidden="true"></i> Validação de QR Codes
-      </h1>
+      <div class="top-bar-left">
+        <button type="button" id="sidebar-toggle-btn" class="sidebar-toggle-btn" aria-label="Ocultar menu lateral" title="Ocultar menu lateral">
+          <i class="bi bi-layout-sidebar-inset" aria-hidden="true"></i>
+        </button>
+        <h1 class="page-title">
+          <i class="bi bi-qr-code-scan" aria-hidden="true"></i> Validação de QR Codes
+        </h1>
+      </div>
     </div>
 
     <!-- Scanner -->
@@ -135,7 +140,13 @@
       <i class="bi bi-stop-circle-fill"></i>
     </button>
   </div>
+    <button type="button" class="tts-close-btn" aria-label="Ocultar leitor de página" title="Ocultar leitor de página">
+      <i class="bi bi-x-lg" aria-hidden="true"></i>
+    </button>
 </div>
+<div class="sidebar-backdrop" id="sidebar-backdrop" aria-hidden="true"></div>
+<script>inicializarTTSToggle('.tts-widget-gestor');</script>
+<script>inicializarSidebarToggle();</script>
 
 <script src="../../../db/db.js"></script>
 <script src="qr-validation.js"></script>

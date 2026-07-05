@@ -210,6 +210,7 @@ function salvarAlteracao() {
   fecharModal();
 }
 
+// Fecha ao clicar no overlay ou pressionar Escape
 document.getElementById('modal-detalhes')?.addEventListener('click', (e) => {
   if (e.target === e.currentTarget) fecharModal();
 });

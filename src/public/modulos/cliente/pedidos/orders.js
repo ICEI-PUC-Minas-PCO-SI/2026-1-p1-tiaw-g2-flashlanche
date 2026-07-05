@@ -94,6 +94,7 @@ function criarCardPedido(pedido) {
     </div>
   `;
 
+  // Usa event listener em vez de onclick inline — evita serializar o pedido no HTML
   card.querySelector('[data-id]').addEventListener('click', () => abrirModal(pedido));
 
   return card;
@@ -106,10 +107,12 @@ function criarCardPedido(pedido) {
 function renderizarPedidos() {
   const container = document.getElementById('orders-grid');
 
+  // Cada cliente só enxerga o próprio histórico, salvo isoladamente no checkout.
   const pedidos = storage.get(authChaveUsuario('pedidos'), []);
 
-  if (pedidos.length === 0) return; 
+  if (pedidos.length === 0) return; // mantém o estado vazio do HTML
 
+  // Mais recentes primeiro
   const ordenados = [...pedidos].reverse();
 
   container.innerHTML = '';
@@ -164,10 +167,12 @@ function fecharModal() {
   modal.setAttribute('aria-hidden', 'true');
 }
 
+// Fecha ao clicar no overlay
 document.getElementById('modal-pedido')?.addEventListener('click', (e) => {
   if (e.target === e.currentTarget) fecharModal();
 });
 
+// Fecha com Escape
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') fecharModal();
 });

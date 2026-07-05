@@ -272,6 +272,7 @@ function aoLerQRCodeComSucesso(textoDecodificado) {
   validarQR();
 }
 
+// Disparada a cada frame sem leitura bem-sucedida — comportamento normal, sem ação necessária.
 function aoFalharLeitura() {}
 
 /* ════════════════════════════════════════════════════════════

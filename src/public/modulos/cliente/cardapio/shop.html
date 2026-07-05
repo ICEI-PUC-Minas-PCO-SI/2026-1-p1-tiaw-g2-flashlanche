@@ -6,7 +6,7 @@
   <title>FlashLanche - Cardápio</title>
   <link rel="icon" type="image/jpeg" href="../../../assets/favicon.png" />
 
-  <!-- SECURITY GUARD-->
+  <!-- SECURITY GUARD: exige apenas estar logado -->
   <script src="../../../db/auth.js"></script>
   <script>
     protegerRota({ caminhoLogin: '../../auth/login/login.html', caminhoHome: '../../../index.html' });
@@ -110,7 +110,11 @@
       <i class="bi bi-stop-circle-fill"></i>
     </button>
   </div>
+    <button type="button" class="tts-close-btn" aria-label="Ocultar leitor de página" title="Ocultar leitor de página">
+      <i class="bi bi-x-lg" aria-hidden="true"></i>
+    </button>
 </div>
+<script>inicializarTTSToggle('.tts-widget');</script>
 
 <script src="shop.js"></script>
 </body>

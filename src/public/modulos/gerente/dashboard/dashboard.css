@@ -17,9 +17,6 @@
 .sidebar-nav a.active { background: var(--orange); color: white; }
 .sidebar-nav i { width: 18px; font-size: 16px; text-align: center; }
 
-/* Havia duas regras .logout-btn nesse arquivo (a primeira nunca chegava a
-   fazer efeito, pois a segunda a sobrescrevia). Mantida só a que de fato
-   estava em uso, com os mesmos valores visuais de antes. */
 .logout-btn { width: calc(100% - 32px); display: flex; align-items: center; gap: 8px; margin: 16px; padding: 8px 16px; background: rgba(255, 107, 44, 0.15); color: var(--orange); border: none; border-radius: 10px; cursor: pointer; font-family: inherit; font-size: 14px; font-weight: 500; transition: all var(--transition-medium); }
 .logout-btn:hover { background: rgba(255, 107, 44, 0.25); }
 
@@ -37,10 +34,6 @@
 .metric-value { font-size: 32px; font-weight: 700; color: var(--orange); }
 .metric-value-highlight { color: var(--green); }
 
-/* Antes a cor base era var(--green), mas as 4 instâncias no HTML sempre
-   sobrescreviam para var(--text-secondary) via style inline — ou seja, o
-   valor "padrão" nunca era usado. Ajustado para refletir o que de fato
-   aparece na tela, e os style inline correspondentes foram removidos. */
 .metric-change { font-size: 12px; color: var(--text-secondary); margin-top: 6px; }
 
 /* ========================= SEÇÕES E TABELAS ========================= */
@@ -69,20 +62,17 @@
 /* ========================= BADGES DE STATUS ========================= */
 .status-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 20px; font-weight: 600; font-size: 11px; text-transform: uppercase; }
 
-/* Pendente e Preparando usam exatamente a mesma cor (grupo "em andamento") */
 .status-pendente,
 .status-preparando { background: rgba(244,183,64,0.12); color: #a87200; }
 
 .status-confirmado { background: rgba(79,124,255,0.12); color: var(--blue, #4f7cff); } /* Fallback hex: --blue pode não existir no styles.css global */
 
-/* Pronto e Retirado usam exatamente a mesma cor (grupo "concluído") */
 .status-pronto,
 .status-retirado { background: rgba(34,160,107,0.12); color: var(--green, #22a06b); }
 
 .status-cancelado { background: rgba(214,69,69,0.12); color: #d64545; }
 
 /* ========================= AÇÕES ========================= */
-/* Não usadas no momento — reservadas para futuras ações por linha (ex: ver detalhes, cancelar) */
 .btn-small { padding: 6px 12px; border-radius: 8px; border: 1px solid var(--border-gray); background: white; cursor: pointer; font-size: 12px; transition: all var(--transition-medium); }
 .btn-small:hover { background: var(--canvas); }
 .btn-small-danger { background: #ff4757; color: white; border-color: #ff4757; }

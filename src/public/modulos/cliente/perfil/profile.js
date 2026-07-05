@@ -130,6 +130,7 @@ function criarEstadoVazio() {
     <h3>Nenhum favorito ainda</h3>
     <p>Os produtos que você favoritar no cardápio vão aparecer aqui.</p>
     <button class="btn-primary-cb">
+      <i class="bi bi-shop"></i>
       Ir para o cardápio
     </button>
   `;
@@ -204,17 +205,17 @@ function criarCardFavorito(produto, quantidade) {
     </div>
   `;
 
-  /*═════════════════════════════════════════════════════IMAGEM═════════════════════════════════════════*/
+  /*═════════════════════════════════════════════════════IMAGEM (criada via DOM, não interpolada no HTML)═════════════════════════════════════════*/
 
   card.querySelector('.favorite-image').prepend(criarImagemFavorito(produto));
 
-  /*═════════════════════════════════════════════════════TEXTOS DO PRODUTO═════════════════════════════════════════*/
+  /*═════════════════════════════════════════════════════TEXTOS DO PRODUTO (textContent evita injeção de HTML)═════════════════════════════════════════*/
 
   card.querySelector('.favorite-category').textContent = produto.categoria;
   card.querySelector('.favorite-title').textContent = produto.nome;
   card.querySelector('.favorite-description').textContent = produto.descricao;
 
-  /*═════════════════════════════════════════════════════EVENTOS═════════════════════════════════════════*/
+  /*═════════════════════════════════════════════════════EVENTOS (listeners em vez de onclick inline)═════════════════════════════════════════*/
 
   card.querySelector('.btn-remove-fav').addEventListener('click', function() {
     removerFavorito(produto.id);
@@ -261,6 +262,11 @@ function alterarQuantidade(id, delta) {
   definirQuantidade(id, nova);
 }
 
+/**
+ * Atualiza apenas o input de quantidade e o subtotal do card de um produto
+ * específico. Se o card não estiver na tela por algum motivo, cai de volta
+ * para uma renderização completa.
+ */
 function atualizarCardNaTela(id, quantidade) {
 
   const card = document.querySelector(`.favorite-card[data-produto-id="${CSS.escape(String(id))}"]`);
@@ -450,21 +456,32 @@ function exibirFeedbackConta(elementoId, resultado) {
 let ttsUtterance = null;
 let isPaused = false;
 
+/**
+ * Prepara o texto da página para ser lido, focando no conteúdo principal
+ */
 function prepararTextoLeitura() {
+  // Dá preferência ao conteúdo dentro da tag <main> para não ler menus repetitivos,
+  // caso a tag não exista, lê todo o <body>.
   const mainContent = document.querySelector('main') || document.body;
 
+  // Extrai apenas o texto limpo sem as tags de código HTML
   let textoParaLer = mainContent.innerText || mainContent.textContent;
 
+  // Limpa quebras de linha em excesso para não gerar pausas longas na voz
   textoParaLer = textoParaLer.replace(/\n+/g, '. ').trim();
 
   return textoParaLer;
 }
 
+/**
+ * Controla os Cenários 1, 2 e 3 (Iniciar, Pausar e Continuar)
+ */
 function toggleLeitura() {
   const btnPlayPause = document.getElementById('tts-play-pause');
   const btnStop = document.getElementById('tts-stop');
   const iconePlayPause = btnPlayPause.querySelector('i');
 
+  // Cenário 3: Continuar (A leitura estava pausada)
   if (isPaused) {
     window.speechSynthesis.resume();
     isPaused = false;
@@ -473,6 +490,7 @@ function toggleLeitura() {
     return;
   }
 
+  // Cenário 2: Pausar (A leitura está em andamento)
   if (window.speechSynthesis.speaking) {
     window.speechSynthesis.pause();
     isPaused = true;
@@ -481,6 +499,7 @@ function toggleLeitura() {
     return;
   }
 
+  // Cenário 1: Iniciar (A leitura do zero)
   const texto = prepararTextoLeitura();
   if (!texto) {
     alert("Não foi possível encontrar conteúdo legível na página.");
@@ -488,10 +507,10 @@ function toggleLeitura() {
   }
 
   ttsUtterance = new SpeechSynthesisUtterance(texto);
-  ttsUtterance.lang = 'pt-BR'; 
-  ttsUtterance.rate = 1.5; 
+  ttsUtterance.lang = 'pt-BR'; // Idioma suportado pela voz do navegador (Pode usar 'pt-PT' também)
+  ttsUtterance.rate = 1.5; // Velocidade da leitura
 
- 
+  // Quando a leitura termina naturalmente, reseta a UI
   ttsUtterance.onend = () => {
     resetarUI();
   };
@@ -501,15 +520,19 @@ function toggleLeitura() {
     resetarUI();
   };
 
+  // Envia o comando para o navegador começar a falar
   window.speechSynthesis.speak(ttsUtterance);
 
+  // Atualiza a Interface (UI)
   iconePlayPause.className = 'bi bi-pause-circle-fill';
   btnPlayPause.setAttribute('aria-label', 'Pausar narração');
   btnStop.disabled = false;
   isPaused = false;
 }
 
-
+/**
+ * Cenário 4: Parar a narração definitivamente
+ */
 function pararLeitura() {
   if (window.speechSynthesis.speaking || isPaused) {
     window.speechSynthesis.cancel();
@@ -517,7 +540,9 @@ function pararLeitura() {
   }
 }
 
-
+/**
+ * Função auxiliar para voltar os botões ao estado original
+ */
 function resetarUI() {
   const btnPlayPause = document.getElementById('tts-play-pause');
   const btnStop = document.getElementById('tts-stop');
@@ -529,6 +554,7 @@ function resetarUI() {
   isPaused = false;
 }
 
+// Prevenção de Bug: Garante que a síntese de voz para caso o utilizador mude de página ou feche o separador
 window.addEventListener('beforeunload', () => {
   window.speechSynthesis.cancel();
 });

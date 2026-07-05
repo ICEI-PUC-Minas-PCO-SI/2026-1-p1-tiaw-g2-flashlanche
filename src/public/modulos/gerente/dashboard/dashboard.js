@@ -10,22 +10,25 @@ function logout() {
 function inicializarDashboard() {
   carregarMetricas();
   renderizarProximasRetiradas();
-  renderizarPedidosRecentes(); 
+  renderizarPedidosRecentes(); // Renderiza inicialmente sem filtros
 
   // CONFIGURAÇÃO DOS FILTROS (PESQUISA E STATUS)
   const inputPesquisa = document.getElementById('search-input');
   const selectStatus = document.getElementById('status-filter');
 
+  // Função unificada que lê ambos os campos e atualiza a tabela
   const aplicarFiltros = () => {
     const termo = inputPesquisa ? inputPesquisa.value : '';
     const status = selectStatus ? selectStatus.value : 'todos';
     renderizarPedidosRecentes(termo, status);
   };
 
+  // Ouve digitação no campo de texto
   if (inputPesquisa) {
     inputPesquisa.addEventListener('input', aplicarFiltros);
   }
 
+  // Ouve mudanças na caixa de seleção de status
   if (selectStatus) {
     selectStatus.addEventListener('change', aplicarFiltros);
   }
@@ -41,7 +44,11 @@ const STORAGE_KEYS = {
   PRODUTOS: 'produtos',
 };
 
-
+/**
+ * Lê e faz parse de um valor JSON do localStorage.
+ * Retorna `padrao` se a chave não existir ou o JSON estiver corrompido,
+ * em vez de deixar o erro quebrar o dashboard inteiro.
+ */
 function obterDoStorage(chave, padrao) {
   const dados = localStorage.getItem(chave);
 
@@ -84,6 +91,7 @@ function carregarMetricas() {
       return;
     }
 
+    // Verifica se o pedido foi criado hoje
     const dataPedido = new Date(pedido.dataCriacao).toLocaleDateString('pt-BR');
 
     if (dataPedido !== hoje) {
@@ -92,16 +100,19 @@ function carregarMetricas() {
 
     pedidosHoje++;
 
+    // Soma a receita apenas se o pedido não foi cancelado
     if (pedido.status !== 'Cancelado') {
       receitaHoje += pedido.total || 0;
     }
   });
 
+  // Calcula o total de unidades de todos os produtos no estoque
   let estoqueTotal = 0;
   produtos.forEach((produto) => {
     estoqueTotal += produto.quantidade || 0;
   });
 
+  // Atualiza o HTML
   document.getElementById('pedidos-hoje').innerText = pedidosHoje;
   document.getElementById('total-produtos').innerText = produtos.length;
   document.getElementById('estoque-total').innerText = estoqueTotal;
@@ -116,12 +127,15 @@ function carregarMetricas() {
 function renderizarProximasRetiradas() {
   const tbody = document.getElementById('upcoming-orders-body');
 
+  // Filtra apenas os pedidos que precisam ser preparados (ignora os já entregues ou cancelados)
   const statusEmPreparo = ['Pendente', 'Confirmado', 'Preparando', 'Pronto'];
 
   let proximos = obterPedidos().filter((pedido) => statusEmPreparo.includes(pedido.status));
 
+  // Ordena pelo horário de retirada (ex: "18:30" vem antes de "19:00")
   proximos.sort((a, b) => a.horarioRetirada.localeCompare(b.horarioRetirada));
 
+  // Limita para mostrar apenas os 5 mais urgentes
   proximos = proximos.slice(0, 5);
 
   tbody.innerHTML = '';
@@ -150,6 +164,7 @@ function criarLinhaVaziaFilaPreparo() {
 }
 
 function criarLinhaProximaRetirada(pedido) {
+  // Resumo dos itens
   let resumoItens = pedido.itens.map((item) => `${item.quantidade}x ${item.nome}`).join(', ');
 
   if (resumoItens.length > 30) {
@@ -166,7 +181,9 @@ function criarLinhaProximaRetirada(pedido) {
     <td><span class="status-badge ${obterClasseStatus(pedido.status)}"></span></td>
   `;
 
-  /*═════════════════════════════════════════════════════TEXTOS DO PEDIDO═════════════════════════════════════════*/
+  /*═════════════════════════════════════════════════════TEXTOS DO PEDIDO (textContent evita injeção de HTML)═════════════════════════════════════════*/
+  // O nome do cliente vem do formulário público de pedidos, então NUNCA deve
+  // ser inserido via innerHTML — textContent garante que é tratado só como texto.
 
   tr.querySelector('.horario-retirada span').textContent = pedido.horarioRetirada;
   tr.querySelector('.pedido-id').textContent = pedido.id;
@@ -174,6 +191,7 @@ function criarLinhaProximaRetirada(pedido) {
 
   const celulaItens = tr.querySelector('.resumo-itens');
   celulaItens.textContent = resumoItens;
+
   celulaItens.title = pedido.itens.map((item) => `${item.quantidade}x ${item.nome}`).join('\n');
 
   tr.querySelector('.status-badge').textContent = pedido.status;
@@ -195,10 +213,13 @@ function renderizarPedidosRecentes(termoPesquisa = '', statusFiltro = 'todos') {
 
   let pedidos = obterPedidos();
 
+  // Ordenação por data (do mais recente para o mais antigo)
   pedidos.sort((a, b) => new Date(b.dataCriacao || 0) - new Date(a.dataCriacao || 0));
 
+  // APLICAÇÃO DOS FILTROS (pesquisa por texto + status)
   pedidos = pedidos.filter((pedido) => passaNosFiltros(pedido, termoPesquisa, statusFiltro));
 
+  // Limita a exibição aos primeiros 8 itens (já filtrados)
   pedidos = pedidos.slice(0, 8);
 
   tbody.innerHTML = '';
@@ -214,6 +235,7 @@ function renderizarPedidosRecentes(termoPesquisa = '', statusFiltro = 'todos') {
 }
 
 function passaNosFiltros(pedido, termoPesquisa, statusFiltro) {
+  // 1. Validação de Pesquisa por Texto
   let passouPesquisa = true;
 
   if (termoPesquisa.trim() !== '') {
@@ -224,12 +246,14 @@ function passaNosFiltros(pedido, termoPesquisa, statusFiltro) {
     passouPesquisa = idCorrespondente || clienteCorrespondente;
   }
 
+  // 2. Validação do Filtro de Status (normaliza para bater com o valor do <select>)
   let passouStatus = true;
 
   if (statusFiltro !== 'todos') {
     passouStatus = normalizarTexto(pedido.status) === statusFiltro;
   }
 
+  // O pedido só aparece se passar em AMBOS os filtros
   return passouPesquisa && passouStatus;
 }
 
@@ -269,7 +293,6 @@ function criarLinhaPedidoRecente(pedido) {
  * ═════════════════════════════════════════════════════
  */
 
-
 function normalizarTexto(texto) {
   return texto ? texto.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '') : '';
 }
@@ -286,7 +309,7 @@ function obterClasseStatus(status) {
       return 'status-pronto';
     case 'retirado':
     case 'entregue':
-    case 'concluido': 
+    case 'concluido': // Sem acento, para coincidir com a normalização acima
       return 'status-retirado';
     case 'cancelado':
       return 'status-cancelado';
@@ -300,8 +323,12 @@ function obterClasseStatus(status) {
 let ttsUtterance = null;
 let isPaused = false;
 
-
+/**
+ * Prepara o texto da página para ser lido, focando no conteúdo principal
+ */
 function prepararTextoLeitura() {
+  // Dá preferência ao conteúdo dentro da tag <main> para não ler menus repetitivos,
+  // caso a tag não exista, lê todo o <body>.
   const mainContent = document.querySelector('main') || document.body;
 
   // Extrai apenas o texto limpo sem as tags de código HTML
@@ -380,7 +407,9 @@ function pararLeitura() {
   }
 }
 
-
+/**
+ * Função auxiliar para voltar os botões ao estado original
+ */
 function resetarUI() {
   const btnPlayPause = document.getElementById('tts-play-pause');
   const btnStop = document.getElementById('tts-stop');
@@ -392,6 +421,7 @@ function resetarUI() {
   isPaused = false;
 }
 
+// Prevenção de Bug: Garante que a síntese de voz para caso o utilizador mude de página ou feche o separador
 window.addEventListener('beforeunload', () => {
   window.speechSynthesis.cancel();
 });

@@ -1,14 +1,3 @@
-/* As variáveis de cor (--orange, --green, --red, --canvas, --border-gray,
-   --dark, --text-primary/secondary, --white-soft, --shadow-*) e o reset
-   global (*, body) já vêm de ../../../styles.css — não são redefinidos
-   aqui para evitar duas fontes de verdade para os mesmos nomes.
-
-   --blue, --yellow e --yellow-soft não apareceram em uso confirmado nas
-   outras páginas do gestor, então cada uso deles abaixo tem um fallback
-   em hexadecimal (ex: var(--yellow, #f4b740)), em vez de redeclará-los
-   aqui — o que voltaria a criar duas fontes de verdade. */
-
-
 /* ========================= LAYOUT ========================= */
 
 .manager-layout {
@@ -1177,5 +1166,14 @@
 
   .content {
     padding: 20px 16px;
+  }
+
+  .modal-overlay {
+    padding: 16px;
+  }
+
+  .modal-box {
+    max-height: 85vh;
+    overflow-y: auto;
   }
 }

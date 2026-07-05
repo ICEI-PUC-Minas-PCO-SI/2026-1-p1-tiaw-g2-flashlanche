@@ -165,11 +165,18 @@ body {
 }
 .nav-links a:hover { color: var(--text-primary); background: var(--canvas); }
 
-.header-actions { display: flex; align-items: center; gap: 10px; }
+.header-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
 
 @media (max-width: 768px) {
-  .nav-links   { display: none; }
-  .header-login { display: none; }
+  .nav-links { display: none; }
+}
+
+@media (max-width: 480px) {
+  .header-inner { flex-wrap: wrap; height: auto; padding: 12px 0; gap: 10px; }
+  #header { height: auto; }
+  .navbar-greeting { display: none; }
+  .header-actions a,
+  .header-actions button { font-size: 12px !important; padding: 8px 12px !important; }
 }
 
 /* ═══════════════════════════════════════════════════
@@ -708,6 +715,36 @@ body {
 .tts-btn:disabled{ color: var(--text-secondary); cursor: not-allowed; transform: none; }
 .tts-stop:not(:disabled):hover { color: var(--red); }
 
+/* Botão de fechar (ocultar) o widget */
+.tts-close-btn {
+  background: none; border: none; color: var(--text-secondary);
+  font-size: 18px; line-height: 1; cursor: pointer; padding: 0 0 0 4px;
+  display: flex; align-items: center;
+  transition: color 0.2s ease;
+}
+.tts-close-btn:hover { color: var(--red); }
+
+/* Botão flutuante minimizado para restaurar o widget depois de oculto */
+.tts-restore-btn {
+  display: none;
+  position: fixed; bottom: 24px; z-index: 9999;
+  left: 24px;
+  width: 48px; height: 48px; border-radius: 50%;
+  align-items: center; justify-content: center;
+  background: var(--white); border: 1px solid var(--border-gray);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  color: var(--orange); font-size: 20px; cursor: pointer;
+  animation: slide-up 0.3s ease;
+  transition: transform 0.18s ease;
+}
+.tts-restore-btn:hover { transform: scale(1.08); }
+.tts-restore-btn-right { left: auto; right: 24px; }
+
+@media (max-width: 600px) {
+  .tts-restore-btn { bottom: 16px; left: 16px; }
+  .tts-restore-btn-right { left: auto; right: 16px; }
+}
+
 /* ═══════════════════════════════════════════════════
    17. ANIMAÇÕES DE SCROLL
 ═══════════════════════════════════════════════════ */
@@ -779,4 +816,97 @@ body {
 @media (max-width: 600px) {
   .tts-widget { bottom: 16px; left: 50%; transform: translateX(-50%); width: max-content; }
   .tts-label  { display: none; }
+}
+/* ═══════════════════════════════════════════════════
+   SIDEBAR RECOLHÍVEL (PAINEL DO GERENTE)
+═══════════════════════════════════════════════════ */
+
+.manager-layout {
+  transition: grid-template-columns 0.25s ease;
+}
+
+.manager-layout .content {
+  grid-column-end: -1;
+}
+
+@media (min-width: 993px) {
+  .manager-layout.sidebar-collapsed {
+    grid-template-columns: 0 1fr;
+  }
+}
+
+.manager-layout.sidebar-collapsed .sidebar {
+  min-width: 0;
+  padding-left: 0;
+  padding-right: 0;
+  overflow: hidden;
+  border: none;
+}
+
+.sidebar-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border: 1px solid var(--border-gray);
+  border-radius: 10px;
+  background: var(--white);
+  color: var(--text-primary);
+  font-size: 18px;
+  cursor: pointer;
+  margin-right: 12px;
+  transition: background 0.2s ease;
+}
+
+.sidebar-toggle-btn:hover { background: var(--dash-gray); }
+
+.top-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sidebar-backdrop { display: none; }
+
+@media (max-width: 992px) {
+  .manager-layout { grid-template-columns: 1fr; }
+
+  .manager-layout .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    width: 240px;
+    height: 100vh;
+    flex-direction: column;
+    padding: 24px 0;
+    transform: translateX(0);
+    transition: transform 0.25s ease;
+    box-shadow: 16px 0 40px rgba(0, 0, 0, 0.25);
+  }
+
+  .manager-layout.sidebar-collapsed .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .manager-layout .sidebar-nav {
+    display: block;
+  }
+
+  .manager-layout .sidebar-nav a {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+
+  .content { padding: 20px 16px; }
+
+  .manager-layout:not(.sidebar-collapsed) ~ .sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.45);
+  }
 }
