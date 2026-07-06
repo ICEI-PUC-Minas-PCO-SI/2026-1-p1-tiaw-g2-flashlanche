@@ -1,7 +1,5 @@
 # Template padrão da aplicação
 
-<span style="color:red">Pré-requisitos: <a href="03-Product-design.md"> Especificação do projeto</a></span>, <a href="04-Metodologia.md"> Metodologia</a>, <a href="05-Projeto-interface.md"> Projeto de interface</a>
-
 ## 1. Visão geral do template
 
 O FlashLanche adota um layout padrão consistente em todas as páginas, dividido em dois "shells" (invólucros) visuais conforme o perfil de acesso:
