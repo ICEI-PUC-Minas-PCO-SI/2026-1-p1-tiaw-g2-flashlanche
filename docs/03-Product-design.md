@@ -1,7 +1,5 @@
 # Product design
 
-<span style="color:red">Pré-requisitos: <a href="02-Product-discovery.md"> Product discovery</a></span>
-
 ## Histórias de usuários
 
 Com base na análise das personas, foram identificadas as seguintes histórias de usuários:
@@ -23,8 +21,6 @@ Com base na análise das personas, foram identificadas as seguintes histórias d
 
 ## Proposta de valor
 
-**✳️✳️✳️ APRESENTE O DIAGRAMA DA PROPOSTA DE VALOR PARA CADA PERSONA ✳️✳️✳️**
-
 ##### Persona 1 - Maria Eduarda
 ![Proposta de Valor - Persona 1](images/proposta-de-valor-1.png)
 
@@ -36,50 +32,70 @@ Com base na análise das personas, foram identificadas as seguintes histórias d
 
 ## Requisitos
 
-As tabelas a seguir apresentam os requisitos funcionais e não funcionais que detalham o escopo do projeto. Para determinar a prioridade dos requisitos, aplique uma técnica de priorização e detalhe como essa técnica foi aplicada.
+As tabelas a seguir apresentam os requisitos funcionais e não funcionais que detalham o escopo do projeto FlashLanche.
+
+Para priorização, foi aplicada a técnica **MoSCoW**. Cada requisito foi classificado como *Must have* (funcionalidade indispensável para o sistema operar — vira **ALTA**), *Should have* (importante, mas o sistema sobrevive sem ela no curto prazo — vira **MÉDIA**) ou *Could have* (desejável, agrega valor mas não é crítica — vira **BAIXA**); a categoria *Won't have* foi usada para descartar itens fora do escopo acadêmico (ex.: pagamento online real, backend/banco de dados) e por isso não aparece nas tabelas. O critério de corte entre Must/Should foi: "o fluxo principal (cliente pedir e gerente gerenciar) quebra sem isso?" — se sim, ALTA; se é um refinamento sobre um fluxo que já funciona, MÉDIA; se é um complemento de conforto/acessibilidade, BAIXA.
 
 ### Requisitos funcionais
 
-| ID     | Descrição do Requisito                                   | Prioridade |
-| ------ | ---------------------------------------------------------- | ---------- |
-| RF-001 | Permitir que o usuário cadastre tarefas ⚠️ EXEMPLO ⚠️ | ALTA       |
-| RF-002 | Emitir um relatório de tarefas no mês ⚠️ EXEMPLO ⚠️ | MÉDIA     |
+| ID | Descrição do Requisito | Prioridade |
+|---|---|---|
+| RF-001 | Permitir que o visitante crie uma conta informando usuário, e-mail, telefone e senha | ALTA |
+| RF-002 | Permitir que o usuário faça login com usuário e senha cadastrados | ALTA |
+| RF-003 | Permitir que o usuário encerre a sessão (logout) | ALTA |
+| RF-004 | Diferenciar o acesso por perfil de usuário: Visitante, Cliente Comum e Gerente (RBAC) | ALTA |
+| RF-005 | Bloquear o acesso a rotas restritas por usuários sem permissão, redirecionando-os com uma mensagem explicativa | ALTA |
+| RF-006 | Permitir que o cliente edite seus dados de conta (e-mail e telefone) | MÉDIA |
+| RF-007 | Permitir que o cliente altere sua senha, mediante confirmação da senha atual | MÉDIA |
+| RF-008 | Exibir o cardápio de produtos disponíveis para o cliente | ALTA |
+| RF-009 | Permitir favoritar/desfavoritar produtos, mantendo a lista de favoritos individual por usuário | MÉDIA |
+| RF-010 | Permitir adicionar produtos ao carrinho de compras, individual por usuário | ALTA |
+| RF-011 | Permitir editar a quantidade ou remover itens do carrinho | ALTA |
+| RF-012 | Permitir aplicar um cupom de desconto ao carrinho | MÉDIA |
+| RF-013 | Permitir selecionar um horário de retirada, respeitando o limite de vagas configurado | ALTA |
+| RF-014 | Permitir finalizar o pedido (checkout) utilizando os dados já cadastrados na conta do cliente | ALTA |
+| RF-015 | Gerar um QR Code contendo os dados do pedido finalizado | ALTA |
+| RF-016 | Exibir ao cliente o histórico "Meus Pedidos", individual por usuário | MÉDIA |
+| RF-017 | Disponibilizar um leitor de tela (TTS) que narra o conteúdo da página, com opção de ocultar/exibir o widget | BAIXA |
+| RF-018 | Exibir ao gerente um dashboard com métricas do dia (pedidos, produtos cadastrados, estoque total, receita) | ALTA |
+| RF-019 | Permitir ao gerente cadastrar, editar e remover produtos do cardápio (CRUD) | ALTA |
+| RF-020 | Permitir ao gerente gerenciar o estoque de produtos (entradas e ajustes de quantidade) | ALTA |
+| RF-021 | Permitir ao gerente cadastrar e gerenciar horários de retirada e suas capacidades | MÉDIA |
+| RF-022 | Permitir ao gerente cadastrar, editar e remover cupons de desconto (CRUD) | MÉDIA |
+| RF-023 | Permitir ao gerente ler/validar o QR Code do pedido para registrá-lo oficialmente no sistema | ALTA |
+| RF-024 | Permitir ao gerente gerenciar pedidos (alterar status de preparo, cancelar) | ALTA |
+| RF-025 | Emitir relatórios de vendas e desempenho da lanchonete em um período selecionado | MÉDIA |
+| RF-026 | Permitir ao gerente ocultar/exibir o menu lateral (sidebar) do painel administrativo | BAIXA |
 
 ### Requisitos não funcionais
 
-| ID      | Descrição do Requisito                                                              | Prioridade |
-| ------- | ------------------------------------------------------------------------------------- | ---------- |
-| RNF-001 | O sistema deve ser responsivo para rodar em dispositivos móveis ⚠️ EXEMPLO ⚠️ | MÉDIA     |
-| RNF-002 | Deve processar as requisições do usuário em no máximo 3 segundos ⚠️ EXEMPLO ⚠️          | BAIXA      |
-
-> ⚠️ **APAGUE ESTA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Com base nas histórias de usuários, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
-
-- [Requisitos funcionais
- (RF)](https://pt.wikipedia.org/wiki/Requisito_funcional):
- correspondem a uma funcionalidade que deve estar presente na
-  plataforma (ex: cadastro de usuário).
-- [Requisitos não funcionais
-  (RNF)](https://pt.wikipedia.org/wiki/Requisito_n%C3%A3o_funcional):
-  correspondem a uma característica técnica, seja de usabilidade,
-  desempenho, confiabilidade, segurança ou outro (ex: suporte a
-  dispositivos iOS e Android).
-
-Lembre-se de que cada requisito deve corresponder a uma e somente uma característica-alvo da sua solução. Além disso, certifique-se de que todos os aspectos capturados nas histórias de usuários foram cobertos.
-
-> **Links úteis**:
-> - [O que são requisitos funcionais e requisitos não funcionais?](https://codificar.com.br/requisitos-funcionais-nao-funcionais/)
-> - [Entenda o que são requisitos de software, a diferença entre requisito funcional e não funcional, e como identificar e documentar cada um deles](https://analisederequisitos.com.br/requisitos-funcionais-e-requisitos-nao-funcionais-o-que-sao/)
+| ID | Descrição do Requisito | Prioridade |
+|---|---|---|
+| RNF-001 | O sistema deve ser responsivo, adaptando o layout para desktop, tablet e dispositivos móveis | ALTA |
+| RNF-002 | O sistema deve funcionar inteiramente client-side, persistindo os dados via `localStorage`/`sessionStorage`, sem depender de um backend ou banco de dados | ALTA |
+| RNF-003 | A sessão do usuário deve expirar automaticamente ao fechar a aba/navegador (uso de `sessionStorage` para o estado de autenticação) | MÉDIA |
+| RNF-004 | O sistema deve ser desenvolvido exclusivamente com HTML, CSS, Bootstrap e JavaScript (+ bibliotecas JS auxiliares), sem uso de frameworks front-end (React, Vue, Angular etc.) | ALTA |
+| RNF-005 | O sistema deve fornecer feedback visual claro ao usuário em ações relevantes (toasts de sucesso/erro, validação inline de formulários) | MÉDIA |
+| RNF-006 | O sistema deve seguir boas práticas de acessibilidade, incluindo atributos ARIA e um recurso de leitura de tela (TTS) | MÉDIA |
+| RNF-007 | O sistema deve impedir, no lado do cliente, o acesso de usuários não autorizados a páginas e ações restritas por perfil | ALTA |
+| RNF-008 | O sistema não deve depender de build tools (bundlers/transpiladores), devendo rodar diretamente no navegador a partir dos arquivos estáticos | BAIXA |
+| RNF-009 | O sistema deve ser compatível com os navegadores modernos mais utilizados (Chrome, Firefox, Edge) em suas versões recentes | MÉDIA |
+| RNF-010 | O código deve ser organizado de forma modular (por página/funcionalidade), facilitando manutenção e extensão futura | BAIXA |
 
 
 ## Restrições
 
-Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.
-
 O projeto está restrito aos itens apresentados na tabela a seguir.
 
-|ID| Restrição                                             |
-|--|-------------------------------------------------------|
-|001| O projeto deverá ser entregue até o final do semestre ⚠️ EXEMPLO ⚠️ |
-|002| Não é permitido o desenvolvimento de um módulo de back-end  ⚠️ EXEMPLO ⚠️  |
+| ID | Restrição |
+|----|-----------|
+| 001 | O projeto deverá ser entregue até o final do semestre |
+| 002 | Não é permitido o desenvolvimento de um módulo de back-end |
+| 003 | Não é permitida a utilização de banco de dados; toda a persistência deve ocorrer via Web Storage API (`localStorage`/`sessionStorage`) do navegador |
+| 004 | Não é permitido o uso de nenhum framework front-end além do Bootstrap (ex.: React, Vue, Angular) — apenas HTML, CSS, Bootstrap e JavaScript com bibliotecas JS auxiliares |
+| 005 | As senhas dos usuários devem ser armazenadas em texto plano no `localStorage`, por se tratar de um projeto acadêmico sem infraestrutura de backend para hashing seguro |
+| 006 | Não há elevação de privilégio (Cliente Comum → Gerente) pela interface; a alteração do papel do usuário só pode ser feita manualmente, editando o Storage do navegador |
+| 007 | O registro oficial de um pedido no sistema do gerente só pode ocorrer através da leitura do QR Code gerado no checkout, não podendo existir outra via de cadastro |
+| 008 | Os dados persistidos (carrinho, favoritos, pedidos, sessão) são isolados por navegador/dispositivo, não havendo sincronização entre diferentes dispositivos de um mesmo usuário |
+| 009 | O projeto deve ser desenvolvido individualmente, sem divisão de módulos entre múltiplos integrantes |
+| 010 | A entrega deve seguir o repositório Git informado (`projeto-TIAW`), com histórico de commits demonstrando a evolução do desenvolvimento |
