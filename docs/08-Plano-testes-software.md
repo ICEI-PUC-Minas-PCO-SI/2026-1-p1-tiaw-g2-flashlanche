@@ -253,3 +253,12 @@ O plano de testes de software é gerado a partir da especificação do sistema (
 | Critério de êxito | - No primeiro caso, os gráficos e tabelas exibem os pedidos e valores correspondentes ao período <br> - No segundo caso, o relatório indica ausência de dados sem gerar erro. |
 | Responsável pela elaboração do caso de teste | Daniel |
 
+<br>
+
+| **Caso de teste**  | **CT-025 – Ocultar e exibir o menu lateral (sidebar)**  |
+|:---: |:---: |
+| Requisito associado | RF-026 - Permitir ao gerente ocultar/exibir o menu lateral (sidebar) do painel administrativo. |
+| Objetivo do teste | Verificar se o gerente consegue alternar a visibilidade do menu lateral (sidebar) para expandir a área de conteúdo do painel. |
+| Passos | - Logado como admin, acessar o Dashboard ou qualquer outra página do painel gerencial <br> - Localizar e clicar no botão de alternância (ícone de hambúrguer ou seta) do menu lateral <br> - Clicar novamente no mesmo botão de alternância |
+| Critério de êxito | - Ao clicar para ocultar, o menu lateral é recolhido ou escondido da tela, e o conteúdo principal se expande fluidamente para ocupar o espaço. <br> - Ao clicar para exibir, o menu lateral retorna à sua posição e tamanho originais de forma correta, sem quebrar o layout da página. |
+| Responsável pela elaboração do caso de teste | Daniel |
