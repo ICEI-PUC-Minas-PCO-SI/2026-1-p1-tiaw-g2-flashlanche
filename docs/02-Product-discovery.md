@@ -1,12 +1,8 @@
 # Product discovery
 
-<span style="color:red">Pré-requisitos: <a href="01-Contexto.md"> Documentação de contexto</a></span>
-
 ✅ [Documentação de Design Thinking (MIRO)](files/template-tiaw-miro.pdf)
 
 ## Etapa de entendimento
-
-**✳️✳️✳️ APRESENTE OS ARTEFATOS DA ETAPA  ✳️✳️✳️**
 
 ![Mapa de Alinhamento CSD](images/matriz-de-alinhamento-csd.png)
 ![Mapa de Stakeholders](images/mapa-de-stakeholders.png)
@@ -17,8 +13,6 @@
 ## Etapa de definição
 
 ### Personas
-
-**✳️✳️✳️ APRESENTE OS DIAGRAMAS DE PERSONAS ✳️✳️✳️**
 
 ![Persona 1](images/persona-1.png)
 ![Persona 2](images/persona-2.png)
