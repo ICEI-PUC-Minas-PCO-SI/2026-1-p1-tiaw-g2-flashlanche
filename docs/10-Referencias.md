@@ -2,8 +2,6 @@
 
 Inclua todas as referências (livros, artigos, sites, etc.) utilizadas no desenvolvimento do trabalho.
 
-⚠️ EXEMPLO ⚠️
-
 # Referências
 
 Inclua todas as referências (livros, artigos, sites, etc.) utilizadas no desenvolvimento do trabalho.
