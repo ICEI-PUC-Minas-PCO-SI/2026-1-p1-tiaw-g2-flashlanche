@@ -32,6 +32,7 @@ Esse modelo de autoatendimento resolve o problema da indecisão e das filas, apr
 ## Instruções de utilização
 
 Link de acesso à aplicação: https://flash-lanche.vercel.app/
+
 Usuários para teste:
 * login: admin | senha: 123
 * login: user | senha: 123
